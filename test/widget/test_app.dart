@@ -5,7 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ism_customer/core/i18n/l10n.dart';
 import 'package:ism_customer/core/i18n/locale_controller.dart';
 import 'package:ism_customer/core/theme/app_theme.dart';
+import 'package:ism_customer/domain/account_status.dart';
 import 'package:ism_customer/domain/app_user.dart';
+import 'package:ism_customer/features/activation/account_status_provider.dart';
 import 'package:ism_customer/features/auth/session_controller.dart';
 import 'package:ism_customer/shared/widgets/offline_banner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,6 +32,7 @@ class FakeSessionController extends SessionController {
 Future<ProviderContainer> makeContainer({
   Map<String, Object> prefs = const {},
   Session session = const Session.ready(testUser),
+  AccountStatus account = AccountStatus.active,
 }) async {
   SharedPreferences.setMockInitialValues(prefs);
   final sp = await SharedPreferences.getInstance();
@@ -38,6 +41,9 @@ Future<ProviderContainer> makeContainer({
       sharedPreferencesProvider.overrideWithValue(sp),
       isOfflineProvider.overrideWith((_) => Stream.value(false)),
       sessionProvider.overrideWith(() => FakeSessionController(session)),
+      accountStatusProvider.overrideWith(
+        (_) => Stream.value(AccountState(account)),
+      ),
     ],
   );
   addTearDown(container.dispose);

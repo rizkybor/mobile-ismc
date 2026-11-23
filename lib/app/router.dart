@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/activation/account_status_provider.dart';
 import '../features/activation/screens/activation_screen.dart';
 import '../features/auth/screens/auth_screens.dart';
 import '../features/auth/session_controller.dart';
@@ -43,7 +44,12 @@ final routerProvider = Provider<GoRouter>((ref) {
         case SessionStatus.needsVerification:
           return path == Routes.verifyEmail ? null : Routes.verifyEmail;
         case SessionStatus.ready:
-          return inAuth ? Routes.home : null;
+          if (inAuth) return Routes.home;
+          // Tab Lacak & Notifikasi hanya untuk akun aktif (PRD §3).
+          final locked =
+              path == Routes.tracking || path == Routes.notifications;
+          if (locked && !ref.read(isAccountActiveProvider)) return Routes.home;
+          return null;
       }
     },
     routes: [
@@ -122,16 +128,21 @@ final routerProvider = Provider<GoRouter>((ref) {
 /// Menjembatani perubahan provider sesi ke `refreshListenable` go_router.
 class _SessionListenable extends ChangeNotifier {
   _SessionListenable(Ref ref) {
-    _sub = ref.listen<SessionStatus>(
-      sessionStatusProvider,
-      (_, _) => notifyListeners(),
-    );
+    _subs = [
+      ref.listen<SessionStatus>(
+        sessionStatusProvider,
+        (_, _) => notifyListeners(),
+      ),
+      ref.listen<bool>(isAccountActiveProvider, (_, _) => notifyListeners()),
+    ];
   }
-  late final ProviderSubscription<SessionStatus> _sub;
+  late final List<ProviderSubscription<Object?>> _subs;
 
   @override
   void dispose() {
-    _sub.close();
+    for (final s in _subs) {
+      s.close();
+    }
     super.dispose();
   }
 }
