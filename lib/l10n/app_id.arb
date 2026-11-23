@@ -104,7 +104,6 @@
     }
   },
   "debugSignOut": "Keluar",
-  "debugGuardLabel": "Guard dummy: anggap sudah login",
   "debugOpen": "Buka panel debug",
   "welcomeFeatureTrack": "Progres 7 tahap setiap order, real-time",
   "welcomeFeatureDocs": "Penawaran, Invoice & Sertifikat resmi",
@@ -124,5 +123,73 @@
   },
   "stagePlaceholderHint": "Fondasi sudah siap. Fitur ini menyusul sesuai urutan tahapan.",
   "splashLoading": "Menyiapkan aplikasi…",
-  "splashTagline": "Calibration Safety Management"
+  "splashTagline": "Calibration Safety Management",
+  "fieldName": "Nama lengkap",
+  "fieldUsername": "Username",
+  "fieldEmail": "Email",
+  "fieldPassword": "Password",
+  "fieldPasswordRepeat": "Ulangi password",
+  "usernameHint": "Tanpa spasi; huruf, angka, titik, - atau _",
+  "validationRequired": "Wajib diisi.",
+  "validationEmail": "Format email tidak valid.",
+  "validationUsername": "Tanpa spasi; hanya huruf, angka, titik, - atau _.",
+  "validationPasswordWeak": "Password belum memenuhi syarat.",
+  "validationPasswordMismatch": "Password tidak sama.",
+  "passwordCheckLength": "8+ karakter",
+  "passwordCheckCase": "Huruf besar & kecil",
+  "passwordCheckDigit": "Angka",
+  "passwordCheckSymbol": "Simbol (!@#$%^&*)",
+  "loginSubtitle": "Masuk dengan email akun portal customer Anda.",
+  "loginButton": "Masuk",
+  "loginForgot": "Lupa password?",
+  "loginNoAccount": "Belum punya akun?",
+  "loginRegisterLink": "Daftar",
+  "registerSubtitle": "Akun akan diverifikasi oleh tim Indo Safety Marine sebelum dapat melihat order.",
+  "registerButton": "Daftar",
+  "registerHaveAccount": "Sudah punya akun?",
+  "registerLoginLink": "Masuk",
+  "registerDoneTitle": "Cek email Anda",
+  "registerDoneBody": "Kami mengirim tautan verifikasi ke {email}. Klik tautan tersebut, lalu masuk ke aplikasi. Periksa juga folder Spam.",
+  "@registerDoneBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "registerDoneButton": "Ke halaman masuk",
+  "verifyBody": "Email {email} belum diverifikasi. Klik tautan di email verifikasi, lalu tekan tombol di bawah.",
+  "@verifyBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "verifyCheck": "Saya sudah verifikasi",
+  "verifyResend": "Kirim ulang email",
+  "verifyResent": "Email verifikasi dikirim ulang. Periksa juga folder Spam.",
+  "verifyNotYet": "Email belum terverifikasi. Buka tautan di email lalu coba lagi.",
+  "verifySignOut": "Masuk dengan akun lain",
+  "forgotSubtitle": "Masukkan email akun Anda. Bila terdaftar, kami kirim tautan untuk mengatur ulang password.",
+  "forgotButton": "Kirim tautan",
+  "forgotDone": "Bila email terdaftar, tautan pengaturan ulang password sudah dikirim. Periksa kotak masuk dan folder Spam.",
+  "forgotBackToLogin": "Kembali ke halaman masuk",
+  "authErrorInvalidEmail": "Format email tidak valid.",
+  "authErrorWrongCredentials": "Email atau password salah.",
+  "authErrorUserDisabled": "Akun ini dinonaktifkan. Hubungi admin.",
+  "authErrorTooManyRequests": "Terlalu banyak percobaan. Coba lagi beberapa menit lagi.",
+  "authErrorNetwork": "Tidak ada koneksi internet. Periksa jaringan Anda.",
+  "authErrorEmailInUse": "Email sudah terdaftar. Silakan masuk.",
+  "authErrorWeakPassword": "Password terlalu lemah.",
+  "authErrorPasswordRequirements": "Password belum memenuhi syarat keamanan (huruf besar, huruf kecil, angka, simbol, min. 8 karakter).",
+  "authErrorRequiresRecentLogin": "Demi keamanan, silakan masuk ulang lalu coba lagi.",
+  "authErrorNotRegistered": "Akun belum terdaftar. Silakan daftar terlebih dahulu.",
+  "authErrorNotCustomer": "Akun ini tidak terdaftar sebagai customer.",
+  "authErrorAccountDisabled": "Akun Anda dinonaktifkan. Hubungi admin.",
+  "authErrorUsernameTaken": "Username sudah dipakai. Silakan pilih username lain.",
+  "authErrorGeneric": "Terjadi kesalahan. Coba lagi.",
+  "signOutConfirmTitle": "Keluar dari akun?",
+  "signOutConfirmBody": "Anda perlu masuk lagi untuk melihat order.",
+  "signOutButton": "Keluar"
 }

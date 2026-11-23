@@ -104,7 +104,6 @@
     }
   },
   "debugSignOut": "Sign out",
-  "debugGuardLabel": "Dummy guard: treat as signed in",
   "debugOpen": "Open debug panel",
   "welcomeFeatureTrack": "7-stage progress of every order, in real time",
   "welcomeFeatureDocs": "Official Quotation, Invoice & Certificates",
@@ -124,5 +123,73 @@
   },
   "stagePlaceholderHint": "The foundation is ready. This feature follows in stage order.",
   "splashLoading": "Getting things ready…",
-  "splashTagline": "Calibration Safety Management"
+  "splashTagline": "Calibration Safety Management",
+  "fieldName": "Full name",
+  "fieldUsername": "Username",
+  "fieldEmail": "Email",
+  "fieldPassword": "Password",
+  "fieldPasswordRepeat": "Repeat password",
+  "usernameHint": "No spaces; letters, digits, dot, - or _",
+  "validationRequired": "Required.",
+  "validationEmail": "Invalid email format.",
+  "validationUsername": "No spaces; letters, digits, dot, - or _ only.",
+  "validationPasswordWeak": "Password does not meet the requirements.",
+  "validationPasswordMismatch": "Passwords do not match.",
+  "passwordCheckLength": "8+ characters",
+  "passwordCheckCase": "Upper & lower case",
+  "passwordCheckDigit": "Number",
+  "passwordCheckSymbol": "Symbol (!@#$%^&*)",
+  "loginSubtitle": "Sign in with your customer portal email.",
+  "loginButton": "Sign in",
+  "loginForgot": "Forgot password?",
+  "loginNoAccount": "No account yet?",
+  "loginRegisterLink": "Register",
+  "registerSubtitle": "Your account will be verified by the Indo Safety Marine team before you can see orders.",
+  "registerButton": "Create account",
+  "registerHaveAccount": "Already have an account?",
+  "registerLoginLink": "Sign in",
+  "registerDoneTitle": "Check your email",
+  "registerDoneBody": "We sent a verification link to {email}. Open the link, then sign in to the app. Check your Spam folder too.",
+  "@registerDoneBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "registerDoneButton": "Go to sign in",
+  "verifyBody": "{email} is not verified yet. Open the link in the verification email, then tap the button below.",
+  "@verifyBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "verifyCheck": "I have verified",
+  "verifyResend": "Resend email",
+  "verifyResent": "Verification email resent. Check your Spam folder too.",
+  "verifyNotYet": "Email is not verified yet. Open the link in the email and try again.",
+  "verifySignOut": "Sign in with another account",
+  "forgotSubtitle": "Enter your account email. If it is registered, we will send a link to reset your password.",
+  "forgotButton": "Send link",
+  "forgotDone": "If the email is registered, a password reset link has been sent. Check your inbox and Spam folder.",
+  "forgotBackToLogin": "Back to sign in",
+  "authErrorInvalidEmail": "Invalid email format.",
+  "authErrorWrongCredentials": "Incorrect email or password.",
+  "authErrorUserDisabled": "This account is disabled. Contact the admin.",
+  "authErrorTooManyRequests": "Too many attempts. Try again in a few minutes.",
+  "authErrorNetwork": "No internet connection. Check your network.",
+  "authErrorEmailInUse": "Email already registered. Please sign in.",
+  "authErrorWeakPassword": "Password is too weak.",
+  "authErrorPasswordRequirements": "Password does not meet the security requirements (upper case, lower case, number, symbol, min. 8 characters).",
+  "authErrorRequiresRecentLogin": "For security, please sign in again and retry.",
+  "authErrorNotRegistered": "Account not registered. Please register first.",
+  "authErrorNotCustomer": "This account is not registered as a customer.",
+  "authErrorAccountDisabled": "Your account has been deactivated. Contact the admin.",
+  "authErrorUsernameTaken": "Username already taken. Please choose another.",
+  "authErrorGeneric": "Something went wrong. Try again.",
+  "signOutConfirmTitle": "Sign out?",
+  "signOutConfirmBody": "You will need to sign in again to see orders.",
+  "signOutButton": "Sign out"
 }

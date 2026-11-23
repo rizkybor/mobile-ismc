@@ -9,7 +9,7 @@ import '../../app/routes.dart';
 import '../../core/i18n/l10n.dart';
 import '../../core/theme/app_colors.dart';
 import '../../shared/widgets/app_loader.dart';
-import '../auth/session_stub.dart';
+import '../auth/session_controller.dart';
 
 /// Splash dalam aplikasi: melanjutkan splash native (kartu logo di atas
 /// gradien), menganimasikan logo & tagline, menampilkan loader, lalu

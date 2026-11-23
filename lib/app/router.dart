@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../features/activation/screens/activation_screen.dart';
 import '../features/auth/screens/auth_screens.dart';
-import '../features/auth/session_stub.dart';
+import '../features/auth/session_controller.dart';
 import '../features/debug/debug_screen.dart';
 import '../features/documents/screens/pdf_viewer_screen.dart';
 import '../features/home/screens/home_screen.dart';

@@ -6,6 +6,7 @@ export 'app_text_field.dart';
 export 'brand_header.dart';
 export 'empty_state.dart';
 export 'error_state.dart';
+export 'inline_message.dart';
 export 'offline_banner.dart';
 export 'section_title.dart';
 export 'skeleton_box.dart';
