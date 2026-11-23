@@ -1,0 +1,59 @@
+name: ism_customer
+description: "ISM Customer — aplikasi mobile customer PT Indo Safety Marine (Android & iOS)."
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.7
+
+dependencies:
+  cloud_firestore: ^7.2.0
+  connectivity_plus: ^7.3.2
+  firebase_auth: ^7.1.0
+  firebase_core: ^5.2.0
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^3.5.0
+  go_router: ^18.1.4
+  intl: ^0.20.3
+  shared_preferences: ^2.5.6
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.14.4
+  flutter_lints: ^6.0.0
+  flutter_native_splash: ^2.4.8
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/images/
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Variable.ttf
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/images/icon.png
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: assets/images/android-icon-foreground.png
+  adaptive_icon_monochrome: assets/images/android-icon-monochrome.png
+  remove_alpha_ios: true
+
+flutter_native_splash:
+  color: "#0B2A5B"
+  image: assets/images/splash-card.png
+  android_12:
+    color: "#0B2A5B"
+    image: assets/images/splash-card.png
+  ios: true
+  android: true
+  fullscreen: false

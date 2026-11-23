@@ -1,0 +1,128 @@
+{
+  "@@locale": "en",
+  "appName": "ISM Customer",
+  "tabHome": "Home",
+  "tabTracking": "Track",
+  "tabNotifications": "Notifications",
+  "tabProfile": "Profile",
+  "commonRetry": "Try again",
+  "commonLoading": "Loading…",
+  "commonBack": "Back",
+  "commonOk": "OK",
+  "commonCancel": "Cancel",
+  "offlineBanner": "Offline — showing last known data",
+  "emptyDefaultTitle": "Nothing here yet",
+  "errorDefaultTitle": "Something went wrong",
+  "errorDefaultMessage": "Data could not be loaded. Check your connection and try again.",
+  "languageIndonesian": "Bahasa Indonesia",
+  "languageEnglish": "English",
+  "languageLabel": "Language",
+  "welcomeTitle": "Welcome to ISM Customer",
+  "welcomeSubtitle": "Track calibration orders, official documents, and notifications from PT Indo Safety Marine.",
+  "welcomeLogin": "Sign in",
+  "welcomeRegister": "Create account",
+  "loginTitle": "Sign in",
+  "registerTitle": "Create account",
+  "verifyEmailTitle": "Check your email",
+  "forgotPasswordTitle": "Forgot password",
+  "homeTitle": "Home",
+  "homeGreetingMorning": "Good morning",
+  "homeGreetingAfternoon": "Good afternoon",
+  "homeGreetingEvening": "Good evening",
+  "homeGreetingNight": "Good night",
+  "trackingTitle": "Track Orders",
+  "notificationsTitle": "Notifications",
+  "profileTitle": "Profile",
+  "orderDetailTitle": "Order detail",
+  "activationTitle": "Account activation",
+  "pdfViewerTitle": "Document",
+  "stagePlaceholder": "This screen will be built in Stage {stage}.",
+  "@stagePlaceholder": {
+    "placeholders": {
+      "stage": {
+        "type": "int"
+      }
+    }
+  },
+  "statusDone": "Done",
+  "statusCurrent": "In progress",
+  "statusPending": "On hold",
+  "statusRejected": "Rejected",
+  "statusWaiting": "Waiting",
+  "timezoneLabel": "WIB",
+  "relativeJustNow": "Just now",
+  "relativeMinutes": "{n} min ago",
+  "@relativeMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "relativeHours": "{n} h ago",
+  "@relativeHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "relativeYesterday": "Yesterday",
+  "debugTitle": "Debug (dev mode only)",
+  "debugFirebaseNotConfigured": "Firebase is not configured. Run with --dart-define-from-file=env/dev.json.",
+  "debugEmulatorOn": "Connected to Firebase Emulator ({host})",
+  "@debugEmulatorOn": {
+    "placeholders": {
+      "host": {
+        "type": "String"
+      }
+    }
+  },
+  "debugEmulatorOff": "Connected to production Firebase (project {project})",
+  "@debugEmulatorOff": {
+    "placeholders": {
+      "project": {
+        "type": "String"
+      }
+    }
+  },
+  "debugLoginSeed": "Sign in seed account & count orders",
+  "debugOrdersCount": "orders documents read: {n}",
+  "@debugOrdersCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "debugSignedInAs": "Signed in as {email}",
+  "@debugSignedInAs": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSignOut": "Sign out",
+  "debugGuardLabel": "Dummy guard: treat as signed in",
+  "debugOpen": "Open debug panel",
+  "welcomeFeatureTrack": "7-stage progress of every order, in real time",
+  "welcomeFeatureDocs": "Official Quotation, Invoice & Certificates",
+  "welcomeFeatureNotif": "Notifications when an order moves",
+  "welcomeBrand": "PT Indo Safety Marine",
+  "homeSubtitle": "Track your company's calibration orders",
+  "trackingSubtitle": "Where each order is across 7 stages",
+  "notificationsSubtitle": "Latest updates from the ISM team",
+  "profileSubtitle": "Account, company & settings",
+  "stageChip": "Stage {stage}",
+  "@stageChip": {
+    "placeholders": {
+      "stage": {
+        "type": "int"
+      }
+    }
+  },
+  "stagePlaceholderHint": "The foundation is ready. This feature follows in stage order.",
+  "splashLoading": "Getting things ready…",
+  "splashTagline": "Calibration Safety Management"
+}
