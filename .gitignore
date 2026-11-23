@@ -1,0 +1,29 @@
+# Dependencies & build
+node_modules/
+.expo/
+dist/
+web-build/
+android/
+ios/
+*.apk
+*.aab
+*.ipa
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+google-services.json
+GoogleService-Info.plist
+*.p8
+*.p12
+*.keystore
+*.jks
+credentials.json
+
+# OS / editor
+.DS_Store
+*.log
+.vscode/
+.idea/
+coverage/
