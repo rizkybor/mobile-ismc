@@ -1,24 +1,56 @@
-# Dependencies & build
-node_modules/
-.expo/
-dist/
-web-build/
-android/
-ios/
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+*.iml
+.metadata
+**/doc/api/
+.flutter-plugins
+.flutter-plugins-dependencies
+lib/l10n/generated/
+*.g.dart.bak
+
+# Android
+android/.gradle/
+android/local.properties
+android/key.properties
+android/**/GeneratedPluginRegistrant.java
+android/app/.cxx/
+android/app/google-services.json
+*.keystore
+*.jks
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Flutter/flutter_export_environment.sh
+ios/Runner/GeneratedPluginRegistrant.*
+ios/Runner/GoogleService-Info.plist
+ios/**/xcuserdata/
+ios/**/*.xcworkspace/xcuserdata/
+ios/ServiceDefinitions.json
+*.p8
+*.p12
+*.mobileprovision
+
+# Build output
 *.apk
 *.aab
 *.ipa
 
-# Env & secrets
+# Env & secrets (dibaca lewat --dart-define-from-file)
+env/*.json
+!env/example.json
 .env
 .env.*
-!.env.example
-google-services.json
-GoogleService-Info.plist
-*.p8
-*.p12
-*.keystore
-*.jks
 credentials.json
 
 # OS / editor
@@ -26,8 +58,7 @@ credentials.json
 *.log
 .vscode/
 .idea/
-coverage/
 
-# Dokumen internal (BRD, PRD, flowchart, prompt) — hanya disimpan lokal
+# Dokumen internal (BRD, PRD, flowchart, penawaran, prompt) — hanya disimpan lokal
 docs/
 prompts/

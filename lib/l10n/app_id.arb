@@ -1,0 +1,128 @@
+{
+  "@@locale": "id",
+  "appName": "ISM Customer",
+  "tabHome": "Beranda",
+  "tabTracking": "Lacak",
+  "tabNotifications": "Notifikasi",
+  "tabProfile": "Profil",
+  "commonRetry": "Coba lagi",
+  "commonLoading": "Memuat…",
+  "commonBack": "Kembali",
+  "commonOk": "OK",
+  "commonCancel": "Batal",
+  "offlineBanner": "Offline — menampilkan data terakhir",
+  "emptyDefaultTitle": "Belum ada data",
+  "errorDefaultTitle": "Terjadi kesalahan",
+  "errorDefaultMessage": "Data gagal dimuat. Periksa koneksi lalu coba lagi.",
+  "languageIndonesian": "Bahasa Indonesia",
+  "languageEnglish": "English",
+  "languageLabel": "Bahasa",
+  "welcomeTitle": "Selamat datang di ISM Customer",
+  "welcomeSubtitle": "Pantau order kalibrasi, dokumen resmi, dan notifikasi dari PT Indo Safety Marine.",
+  "welcomeLogin": "Masuk",
+  "welcomeRegister": "Daftar akun",
+  "loginTitle": "Masuk",
+  "registerTitle": "Daftar akun",
+  "verifyEmailTitle": "Cek email Anda",
+  "forgotPasswordTitle": "Lupa password",
+  "homeTitle": "Beranda",
+  "homeGreetingMorning": "Selamat pagi",
+  "homeGreetingAfternoon": "Selamat siang",
+  "homeGreetingEvening": "Selamat sore",
+  "homeGreetingNight": "Selamat malam",
+  "trackingTitle": "Lacak Order",
+  "notificationsTitle": "Notifikasi",
+  "profileTitle": "Profil",
+  "orderDetailTitle": "Detail order",
+  "activationTitle": "Aktivasi akun",
+  "pdfViewerTitle": "Dokumen",
+  "stagePlaceholder": "Layar ini akan diisi pada Tahap {stage}.",
+  "@stagePlaceholder": {
+    "placeholders": {
+      "stage": {
+        "type": "int"
+      }
+    }
+  },
+  "statusDone": "Selesai",
+  "statusCurrent": "Sedang berjalan",
+  "statusPending": "Tertunda",
+  "statusRejected": "Ditolak",
+  "statusWaiting": "Menunggu",
+  "timezoneLabel": "WIB",
+  "relativeJustNow": "Baru saja",
+  "relativeMinutes": "{n} mnt lalu",
+  "@relativeMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "relativeHours": "{n} jam lalu",
+  "@relativeHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "relativeYesterday": "Kemarin",
+  "debugTitle": "Debug (hanya mode dev)",
+  "debugFirebaseNotConfigured": "Firebase belum dikonfigurasi. Jalankan dengan --dart-define-from-file=env/dev.json.",
+  "debugEmulatorOn": "Terhubung ke Firebase Emulator ({host})",
+  "@debugEmulatorOn": {
+    "placeholders": {
+      "host": {
+        "type": "String"
+      }
+    }
+  },
+  "debugEmulatorOff": "Terhubung ke Firebase produksi (proyek {project})",
+  "@debugEmulatorOff": {
+    "placeholders": {
+      "project": {
+        "type": "String"
+      }
+    }
+  },
+  "debugLoginSeed": "Masuk akun seed & hitung order",
+  "debugOrdersCount": "Dokumen orders terbaca: {n}",
+  "@debugOrdersCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "debugSignedInAs": "Masuk sebagai {email}",
+  "@debugSignedInAs": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSignOut": "Keluar",
+  "debugGuardLabel": "Guard dummy: anggap sudah login",
+  "debugOpen": "Buka panel debug",
+  "welcomeFeatureTrack": "Progres 7 tahap setiap order, real-time",
+  "welcomeFeatureDocs": "Penawaran, Invoice & Sertifikat resmi",
+  "welcomeFeatureNotif": "Notifikasi saat order bergerak",
+  "welcomeBrand": "PT Indo Safety Marine",
+  "homeSubtitle": "Pantau order kalibrasi perusahaan Anda",
+  "trackingSubtitle": "Posisi setiap order di 7 tahap",
+  "notificationsSubtitle": "Kabar terbaru dari tim ISM",
+  "profileSubtitle": "Akun, perusahaan & pengaturan",
+  "stageChip": "Tahap {stage}",
+  "@stageChip": {
+    "placeholders": {
+      "stage": {
+        "type": "int"
+      }
+    }
+  },
+  "stagePlaceholderHint": "Fondasi sudah siap. Fitur ini menyusul sesuai urutan tahapan.",
+  "splashLoading": "Menyiapkan aplikasi…",
+  "splashTagline": "Calibration Safety Management"
+}
