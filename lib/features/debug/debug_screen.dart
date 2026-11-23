@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,7 +9,7 @@ import '../../core/theme/app_spacing.dart';
 import '../../data/firebase_providers.dart';
 import '../../data/orders_repository.dart';
 import '../../shared/widgets/widgets.dart';
-import '../auth/session_stub.dart';
+import '../auth/session_controller.dart';
 import 'language_toggle.dart';
 
 /// Akun seed Firebase Emulator (repo CSMS `qa/automation/seed/seed.mjs`).
@@ -61,7 +60,7 @@ class _DebugScreenState extends ConsumerState<DebugScreen> {
     assert(kDebugMode, 'DebugScreen hanya untuk mode debug');
     final l10n = context.l10n;
     final firebaseReady = ref.watch(firebaseReadyProvider);
-    final session = ref.watch(sessionStatusProvider);
+    final session = ref.watch(sessionProvider);
     final user = firebaseReady
         ? ref.watch(firebaseAuthProvider).currentUser
         : null;
@@ -99,6 +98,11 @@ class _DebugScreenState extends ConsumerState<DebugScreen> {
                   const SizedBox(height: AppSpacing.sm),
                   Text(l10n.debugSignedInAs(user.email ?? user.uid)),
                 ],
+                const SizedBox(height: AppSpacing.sm),
+                Text(
+                  session.status.name,
+                  style: const TextStyle(color: AppColors.textSecondary),
+                ),
                 if (_count != null) ...[
                   const SizedBox(height: AppSpacing.sm),
                   Text(
@@ -122,23 +126,12 @@ class _DebugScreenState extends ConsumerState<DebugScreen> {
                     label: l10n.debugSignOut,
                     variant: AppButtonVariant.text,
                     onPressed: () async {
-                      await FirebaseAuth.instance.signOut();
+                      await ref.read(sessionProvider.notifier).signOut();
                       setState(() => _count = null);
                     },
                   ),
                 ],
               ],
-            ),
-          ),
-          const SizedBox(height: AppSpacing.md),
-          AppCard(
-            child: SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.debugGuardLabel),
-              value: session == SessionStatus.ready,
-              onChanged: (v) => ref
-                  .read(sessionStatusProvider.notifier)
-                  .set(v ? SessionStatus.ready : SessionStatus.signedOut),
             ),
           ),
         ],

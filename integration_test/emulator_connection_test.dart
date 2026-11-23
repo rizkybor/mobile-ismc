@@ -9,6 +9,7 @@ import 'package:integration_test/integration_test.dart';
 import 'package:ism_customer/core/config/env.dart';
 import 'package:ism_customer/data/firebase.dart';
 import 'package:ism_customer/data/orders_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // Akun seed emulator (repo CSMS qa/automation/seed/seed.mjs) — bukan kredensial nyata.
 const seedEmail = 'ops@samudra.example.com';
@@ -35,14 +36,19 @@ void main() {
     );
     expect(auth.currentUser?.email, seedEmail);
 
-    final repo = OrdersRepository(FirebaseFirestore.instance);
+    final repo = OrdersRepository(
+      FirebaseFirestore.instance,
+      await SharedPreferences.getInstance(),
+    );
     final orders = await repo.fetchCustomerOrders(seedEmail);
     // Seed CSMS membuat beberapa order untuk PT Samudra Bahari Lines.
     expect(orders, isNotEmpty);
     for (final o in orders) {
-      expect(o['customerEmail'], seedEmail);
-      expect(o['isDeleted'], isFalse);
+      expect(o.customerEmail, seedEmail);
+      expect(o.ordersNo, startsWith('OR/'));
     }
+    // Cache lokal terisi untuk mode offline
+    expect(repo.readCache(seedEmail)?.length, orders.length);
     // ignore: avoid_print
     print('[integration] orders terbaca: ${orders.length}');
     await auth.signOut();

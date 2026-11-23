@@ -1,0 +1,146 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../domain/app_user.dart';
+import '../domain/auth_rules.dart';
+import 'firebase_providers.dart';
+import 'users_repository.dart';
+
+/// Hasil masuk: sudah tervalidasi, atau email belum diverifikasi.
+sealed class SignInResult {
+  const SignInResult();
+}
+
+class SignInReady extends SignInResult {
+  const SignInReady(this.user);
+  final AppUser user;
+}
+
+class SignInNeedsVerification extends SignInResult {
+  const SignInNeedsVerification(this.email);
+  final String email;
+}
+
+/// Alur Firebase Auth + validasi dokumen `users` (PRD F-01, flowchart §2–3).
+class AuthRepository {
+  AuthRepository(this._auth, this._users);
+  final FirebaseAuth _auth;
+  final UsersRepository _users;
+
+  User? get currentUser => _auth.currentUser;
+  Stream<User?> get userChanges => _auth.userChanges();
+
+  /// Daftar: cek username → buat akun → `users/{username}` → `roles/{uid}`
+  /// → kirim email verifikasi → keluar (customer masuk lewat form login).
+  Future<void> register({
+    required String name,
+    required String username,
+    required String email,
+    required String password,
+  }) async {
+    if (await _users.isUsernameTaken(username)) {
+      throw const AuthFailure(AuthErrorKind.usernameTaken);
+    }
+    final UserCredential cred;
+    try {
+      cred = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(
+        AuthErrorMapper.fromCode(e.code, message: e.message),
+        code: e.code,
+      );
+    }
+    final uid = cred.user!.uid;
+    try {
+      await _users.createCustomerUser(
+        uid: uid,
+        username: username,
+        name: name,
+        email: email,
+      );
+      await _users.ensureCustomerRole(uid, email).catchError((_) {});
+      await cred.user!.sendEmailVerification().catchError((_) {});
+    } finally {
+      await _auth.signOut().catchError((_) {});
+    }
+  }
+
+  /// Masuk dengan email & password lalu validasi seperti portal web.
+  /// Gagal validasi → keluar lagi dan lempar [AuthFailure].
+  Future<SignInResult> signIn(String email, String password) async {
+    final UserCredential cred;
+    try {
+      cred = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(
+        AuthErrorMapper.fromCode(e.code, message: e.message),
+        code: e.code,
+      );
+    }
+    return validateCurrentUser(cred.user!);
+  }
+
+  /// Dipakai saat masuk dan saat aplikasi dibuka dengan sesi tersimpan.
+  Future<SignInResult> validateCurrentUser(User user) async {
+    if (!user.emailVerified) {
+      return SignInNeedsVerification(user.email ?? '');
+    }
+    try {
+      final appUser = await _users.loadCustomer(user.uid);
+      await _users
+          .ensureCustomerRole(user.uid, appUser.email)
+          .catchError((_) {});
+      return SignInReady(appUser);
+    } on AuthFailure {
+      await _auth.signOut().catchError((_) {});
+      rethrow;
+    }
+  }
+
+  Future<void> sendPasswordReset(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      // Pesan ke pengguna selalu netral; hanya galat jaringan yang diteruskan.
+      final kind = AuthErrorMapper.fromCode(e.code, message: e.message);
+      if (kind == AuthErrorKind.network ||
+          kind == AuthErrorKind.tooManyRequests) {
+        throw AuthFailure(kind, code: e.code);
+      }
+    }
+  }
+
+  Future<void> resendVerification() async {
+    final user = _auth.currentUser;
+    if (user == null) throw const AuthFailure(AuthErrorKind.unknown);
+    try {
+      await user.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(
+        AuthErrorMapper.fromCode(e.code, message: e.message),
+        code: e.code,
+      );
+    }
+  }
+
+  /// `user.reload()` lalu kembalikan user terbaru (emailVerified bisa berubah).
+  Future<User?> reloadUser() async {
+    await _auth.currentUser?.reload();
+    return _auth.currentUser;
+  }
+
+  Future<void> signOut() => _auth.signOut();
+}
+
+final authRepositoryProvider = Provider<AuthRepository>(
+  (ref) => AuthRepository(
+    ref.watch(firebaseAuthProvider),
+    ref.watch(usersRepositoryProvider),
+  ),
+);

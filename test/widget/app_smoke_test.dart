@@ -4,24 +4,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ism_customer/app/app.dart';
 import 'package:ism_customer/core/i18n/locale_controller.dart';
 import 'package:ism_customer/core/i18n/supported_locales.dart';
+import 'package:ism_customer/features/auth/screens/auth_screens.dart';
+import 'package:ism_customer/features/auth/session_controller.dart';
 import 'package:ism_customer/features/splash/splash_screen.dart';
 import 'package:ism_customer/shared/widgets/brand_header.dart';
-import 'package:ism_customer/shared/widgets/offline_banner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'test_app.dart';
 
 Future<ProviderContainer> pumpApp(
   WidgetTester tester, {
   Map<String, Object> prefs = const {},
+  Session session = const Session.ready(testUser),
 }) async {
-  SharedPreferences.setMockInitialValues(prefs);
-  final sp = await SharedPreferences.getInstance();
-  final container = ProviderContainer(
-    overrides: [
-      sharedPreferencesProvider.overrideWithValue(sp),
-      isOfflineProvider.overrideWith((_) => Stream.value(false)),
-    ],
-  );
-  addTearDown(container.dispose);
+  final container = await makeContainer(prefs: prefs, session: session);
   await tester.pumpWidget(
     UncontrolledProviderScope(
       container: container,
@@ -39,15 +35,7 @@ Future<ProviderContainer> pumpApp(
 
 void main() {
   testWidgets('splash tampil dulu lalu masuk ke aplikasi', (tester) async {
-    SharedPreferences.setMockInitialValues({});
-    final sp = await SharedPreferences.getInstance();
-    final container = ProviderContainer(
-      overrides: [
-        sharedPreferencesProvider.overrideWithValue(sp),
-        isOfflineProvider.overrideWith((_) => Stream.value(false)),
-      ],
-    );
-    addTearDown(container.dispose);
+    final container = await makeContainer();
     await tester.pumpWidget(
       UncontrolledProviderScope(
         container: container,
@@ -63,15 +51,26 @@ void main() {
     expect(find.byType(NavigationBar), findsOneWidget);
   });
 
-  testWidgets('pemasangan baru mulai dalam Bahasa Indonesia dengan 4 tab', (
-    tester,
-  ) async {
+  testWidgets('sesi ready: 4 tab dalam Bahasa Indonesia', (tester) async {
     await pumpApp(tester);
     expect(find.text('Beranda'), findsWidgets);
     expect(find.text('Lacak'), findsOneWidget);
     expect(find.text('Notifikasi'), findsOneWidget);
     expect(find.text('Profil'), findsOneWidget);
-    expect(find.byType(NavigationBar), findsOneWidget);
+  });
+
+  testWidgets('belum login → Welcome, dan tab tidak bisa diakses', (
+    tester,
+  ) async {
+    await pumpApp(tester, session: const Session.signedOut());
+    expect(find.byType(WelcomeScreen), findsOneWidget);
+    expect(find.byType(NavigationBar), findsNothing);
+  });
+
+  testWidgets('email belum diverifikasi → layar verifikasi', (tester) async {
+    await pumpApp(tester, session: const Session.needsVerification('x@y.com'));
+    expect(find.byType(VerifyEmailScreen), findsOneWidget);
+    expect(find.textContaining('x@y.com'), findsOneWidget);
   });
 
   testWidgets('pilihan bahasa tersimpan dipakai saat dibuka', (tester) async {
@@ -92,17 +91,14 @@ void main() {
     expect(sp.getString(kLanguagePrefKey), 'en');
   });
 
-  testWidgets('tap tab Profil membuka layar Profil', (tester) async {
+  testWidgets('tap tab Profil membuka layar Profil dengan data akun', (
+    tester,
+  ) async {
     await pumpApp(tester);
     await tester.tap(find.text('Profil'));
     await tester.pumpAndSettle();
     expect(find.byType(BrandHeader), findsOneWidget);
-    expect(
-      find.descendant(
-        of: find.byType(BrandHeader),
-        matching: find.text('Profil'),
-      ),
-      findsOneWidget,
-    );
+    expect(find.text('Ops Samudra'), findsOneWidget);
+    expect(find.text('ops@samudra.example.com'), findsOneWidget);
   });
 }

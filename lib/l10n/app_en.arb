@@ -104,7 +104,6 @@
     }
   },
   "debugSignOut": "Sign out",
-  "debugGuardLabel": "Dummy guard: treat as signed in",
   "debugOpen": "Open debug panel",
   "welcomeFeatureTrack": "7-stage progress of every order, in real time",
   "welcomeFeatureDocs": "Official Quotation, Invoice & Certificates",
@@ -124,5 +123,194 @@
   },
   "stagePlaceholderHint": "The foundation is ready. This feature follows in stage order.",
   "splashLoading": "Getting things ready…",
-  "splashTagline": "Calibration Safety Management"
+  "splashTagline": "Calibration Safety Management",
+  "fieldName": "Full name",
+  "fieldUsername": "Username",
+  "fieldEmail": "Email",
+  "fieldPassword": "Password",
+  "fieldPasswordRepeat": "Repeat password",
+  "usernameHint": "No spaces; letters, digits, dot, - or _",
+  "validationRequired": "Required.",
+  "validationEmail": "Invalid email format.",
+  "validationUsername": "No spaces; letters, digits, dot, - or _ only.",
+  "validationPasswordWeak": "Password does not meet the requirements.",
+  "validationPasswordMismatch": "Passwords do not match.",
+  "passwordCheckLength": "8+ characters",
+  "passwordCheckCase": "Upper & lower case",
+  "passwordCheckDigit": "Number",
+  "passwordCheckSymbol": "Symbol (!@#$%^&*)",
+  "loginSubtitle": "Sign in with your customer portal email.",
+  "loginButton": "Sign in",
+  "loginForgot": "Forgot password?",
+  "loginNoAccount": "No account yet?",
+  "loginRegisterLink": "Register",
+  "registerSubtitle": "Your account will be verified by the Indo Safety Marine team before you can see orders.",
+  "registerButton": "Create account",
+  "registerHaveAccount": "Already have an account?",
+  "registerLoginLink": "Sign in",
+  "registerDoneTitle": "Check your email",
+  "registerDoneBody": "We sent a verification link to {email}. Open the link, then sign in to the app. Check your Spam folder too.",
+  "@registerDoneBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "registerDoneButton": "Go to sign in",
+  "verifyBody": "{email} is not verified yet. Open the link in the verification email, then tap the button below.",
+  "@verifyBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "verifyCheck": "I have verified",
+  "verifyResend": "Resend email",
+  "verifyResent": "Verification email resent. Check your Spam folder too.",
+  "verifyNotYet": "Email is not verified yet. Open the link in the email and try again.",
+  "verifySignOut": "Sign in with another account",
+  "forgotSubtitle": "Enter your account email. If it is registered, we will send a link to reset your password.",
+  "forgotButton": "Send link",
+  "forgotDone": "If the email is registered, a password reset link has been sent. Check your inbox and Spam folder.",
+  "forgotBackToLogin": "Back to sign in",
+  "authErrorInvalidEmail": "Invalid email format.",
+  "authErrorWrongCredentials": "Incorrect email or password.",
+  "authErrorUserDisabled": "This account is disabled. Contact the admin.",
+  "authErrorTooManyRequests": "Too many attempts. Try again in a few minutes.",
+  "authErrorNetwork": "No internet connection. Check your network.",
+  "authErrorEmailInUse": "Email already registered. Please sign in.",
+  "authErrorWeakPassword": "Password is too weak.",
+  "authErrorPasswordRequirements": "Password does not meet the security requirements (upper case, lower case, number, symbol, min. 8 characters).",
+  "authErrorRequiresRecentLogin": "For security, please sign in again and retry.",
+  "authErrorNotRegistered": "Account not registered. Please register first.",
+  "authErrorNotCustomer": "This account is not registered as a customer.",
+  "authErrorAccountDisabled": "Your account has been deactivated. Contact the admin.",
+  "authErrorUsernameTaken": "Username already taken. Please choose another.",
+  "authErrorGeneric": "Something went wrong. Try again.",
+  "signOutConfirmTitle": "Sign out?",
+  "signOutConfirmBody": "You will need to sign in again to see orders.",
+  "signOutButton": "Sign out",
+  "accountStatusUnregisteredTitle": "Complete your company details",
+  "accountStatusUnregisteredBody": "One more step before your orders can be shown.",
+  "accountStatusWaitingTitle": "Waiting for admin verification",
+  "accountStatusWaitingBody": "Your details were received. The Indo Safety Marine team will verify your account.",
+  "accountStatusInactiveTitle": "Your account is inactive",
+  "accountStatusInactiveBody": "This account was deactivated by the admin. Contact Indo Safety Marine to reactivate it.",
+  "activationStep1": "Create account",
+  "activationStep2": "Complete company details",
+  "activationStep3": "ISM admin verification",
+  "activationStep3Hint": "Usually within 1 business day",
+  "activationCta": "Complete now",
+  "activationFormTitle": "Company details",
+  "activationFormSubtitle": "The ISM team uses these details to match orders with your account.",
+  "fieldCustomerType": "Customer type",
+  "customerTypeCompany": "Company",
+  "customerTypeIndividual": "Individual",
+  "fieldCompanyName": "Company name",
+  "fieldPhone": "Mobile number",
+  "fieldTelp": "Office phone",
+  "fieldOptional": "Optional",
+  "fieldAddress": "Address",
+  "validationPhoneDigits": "Mobile number must contain digits only.",
+  "activationSubmit": "Send activation request",
+  "activationFooter": "After sending, your account status becomes “Waiting for verification” until approved by the ISM admin.",
+  "activationAlreadyExists": "Customer data with this email already exists. Contact the admin if it needs updating.",
+  "activationFailed": "Activation request could not be sent. Try again.",
+  "contactCall": "Call",
+  "contactEmail": "Email",
+  "tabLockedMessage": "Available after your account is verified by the ISM admin.",
+  "homeStatTotal": "Total orders",
+  "homeStatInProgress": "In progress",
+  "homeStatDone": "Completed",
+  "homeRecentOrders": "Recent orders",
+  "homeSeeAll": "See all",
+  "homeEmptyTitle": "No orders yet",
+  "homeEmptyBody": "Orders created by the Indo Safety Marine team for your company will appear here.",
+  "homeErrorBody": "Order history could not be loaded.",
+  "homeCachedNotice": "Showing the last saved data.",
+  "orderStageDraft": "Draft Work Form",
+  "orderStageInProgress": "In progress",
+  "orderStageApproval": "Awaiting approval",
+  "orderStageDone": "Completed",
+  "orderStageRejected": "Rejected",
+  "trackingStepOrder": "Order received",
+  "trackingStepWorkform": "Work recommendation",
+  "trackingStepQuotation": "Quotation & approval",
+  "trackingStepService": "Service & calibration",
+  "trackingStepCertificate": "Certificate",
+  "trackingStepInvoice": "Invoice",
+  "trackingStepDelivery": "Delivery Order",
+  "trackingFinished": "Completed",
+  "trackingProgress": "{done}/{total} stages",
+  "@trackingProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "trackingNoteWorkformEntry": "Work Form in progress",
+  "trackingNoteQuotation": "Quotation {no}",
+  "@trackingNoteQuotation": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteQuotationCreated": "Quotation created",
+  "trackingNoteServiceWaitingPo": "Service done, waiting for PO",
+  "trackingNoteCertNoPo": "Issued without PO",
+  "trackingNotePo": "PO {no}",
+  "@trackingNotePo": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteInvoice": "{no} · {payment}",
+  "@trackingNoteInvoice": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      },
+      "payment": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteInvoiceNotIssued": "Invoice not issued yet",
+  "paymentPaid": "Paid",
+  "paymentTempo": "Credit terms",
+  "paymentUnpaid": "Unpaid",
+  "trackingEventOrderCreated": "Order created",
+  "trackingEventWorkformStarted": "Work Form started",
+  "trackingEventRecommendationSent": "Work recommendation sent to client",
+  "trackingEventRecommendationApproved": "Client approved the work recommendation",
+  "trackingEventRecommendationPending": "Work recommendation marked pending",
+  "trackingEventRecommendationRejected": "Client rejected the work recommendation",
+  "trackingEventInspectionDecision": "Client decision on the work recommendation",
+  "trackingEventPoReceivedCertificate": "PO received, certificate in process",
+  "trackingEventServiceDoneWaitingPo": "Service done, waiting for PO",
+  "trackingEventServiceDoneCertificate": "Service done, entering certificate stage",
+  "trackingEventPoConfirmedCertificateReady": "PO confirmed, certificate ready to issue",
+  "trackingEventDocumentRejected": "Document rejected",
+  "trackingEventQuotationCreated": "Quotation created",
+  "trackingEventQuotationUpdated": "Quotation updated",
+  "trackingEventPoRecorded": "PO number recorded",
+  "trackingEventPoUpdated": "PO number changed",
+  "trackingEventPoRemoved": "PO number removed",
+  "trackingEventCertificateIssued": "Certificate issued",
+  "trackingEventInvoiceIssued": "Invoice issued",
+  "trackingEventInvoiceUpdated": "Invoice updated",
+  "trackingEventInvoicePaid": "Invoice paid",
+  "trackingEventInvoiceUnpaid": "Invoice paid status reverted",
+  "trackingEventDeliveryOrderIssued": "Delivery Order issued",
+  "trackingEventReverted": "Process reverted for revision"
 }

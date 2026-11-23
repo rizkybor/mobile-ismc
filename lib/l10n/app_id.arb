@@ -104,7 +104,6 @@
     }
   },
   "debugSignOut": "Keluar",
-  "debugGuardLabel": "Guard dummy: anggap sudah login",
   "debugOpen": "Buka panel debug",
   "welcomeFeatureTrack": "Progres 7 tahap setiap order, real-time",
   "welcomeFeatureDocs": "Penawaran, Invoice & Sertifikat resmi",
@@ -124,5 +123,194 @@
   },
   "stagePlaceholderHint": "Fondasi sudah siap. Fitur ini menyusul sesuai urutan tahapan.",
   "splashLoading": "Menyiapkan aplikasi…",
-  "splashTagline": "Calibration Safety Management"
+  "splashTagline": "Calibration Safety Management",
+  "fieldName": "Nama lengkap",
+  "fieldUsername": "Username",
+  "fieldEmail": "Email",
+  "fieldPassword": "Password",
+  "fieldPasswordRepeat": "Ulangi password",
+  "usernameHint": "Tanpa spasi; huruf, angka, titik, - atau _",
+  "validationRequired": "Wajib diisi.",
+  "validationEmail": "Format email tidak valid.",
+  "validationUsername": "Tanpa spasi; hanya huruf, angka, titik, - atau _.",
+  "validationPasswordWeak": "Password belum memenuhi syarat.",
+  "validationPasswordMismatch": "Password tidak sama.",
+  "passwordCheckLength": "8+ karakter",
+  "passwordCheckCase": "Huruf besar & kecil",
+  "passwordCheckDigit": "Angka",
+  "passwordCheckSymbol": "Simbol (!@#$%^&*)",
+  "loginSubtitle": "Masuk dengan email akun portal customer Anda.",
+  "loginButton": "Masuk",
+  "loginForgot": "Lupa password?",
+  "loginNoAccount": "Belum punya akun?",
+  "loginRegisterLink": "Daftar",
+  "registerSubtitle": "Akun akan diverifikasi oleh tim Indo Safety Marine sebelum dapat melihat order.",
+  "registerButton": "Daftar",
+  "registerHaveAccount": "Sudah punya akun?",
+  "registerLoginLink": "Masuk",
+  "registerDoneTitle": "Cek email Anda",
+  "registerDoneBody": "Kami mengirim tautan verifikasi ke {email}. Klik tautan tersebut, lalu masuk ke aplikasi. Periksa juga folder Spam.",
+  "@registerDoneBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "registerDoneButton": "Ke halaman masuk",
+  "verifyBody": "Email {email} belum diverifikasi. Klik tautan di email verifikasi, lalu tekan tombol di bawah.",
+  "@verifyBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "verifyCheck": "Saya sudah verifikasi",
+  "verifyResend": "Kirim ulang email",
+  "verifyResent": "Email verifikasi dikirim ulang. Periksa juga folder Spam.",
+  "verifyNotYet": "Email belum terverifikasi. Buka tautan di email lalu coba lagi.",
+  "verifySignOut": "Masuk dengan akun lain",
+  "forgotSubtitle": "Masukkan email akun Anda. Bila terdaftar, kami kirim tautan untuk mengatur ulang password.",
+  "forgotButton": "Kirim tautan",
+  "forgotDone": "Bila email terdaftar, tautan pengaturan ulang password sudah dikirim. Periksa kotak masuk dan folder Spam.",
+  "forgotBackToLogin": "Kembali ke halaman masuk",
+  "authErrorInvalidEmail": "Format email tidak valid.",
+  "authErrorWrongCredentials": "Email atau password salah.",
+  "authErrorUserDisabled": "Akun ini dinonaktifkan. Hubungi admin.",
+  "authErrorTooManyRequests": "Terlalu banyak percobaan. Coba lagi beberapa menit lagi.",
+  "authErrorNetwork": "Tidak ada koneksi internet. Periksa jaringan Anda.",
+  "authErrorEmailInUse": "Email sudah terdaftar. Silakan masuk.",
+  "authErrorWeakPassword": "Password terlalu lemah.",
+  "authErrorPasswordRequirements": "Password belum memenuhi syarat keamanan (huruf besar, huruf kecil, angka, simbol, min. 8 karakter).",
+  "authErrorRequiresRecentLogin": "Demi keamanan, silakan masuk ulang lalu coba lagi.",
+  "authErrorNotRegistered": "Akun belum terdaftar. Silakan daftar terlebih dahulu.",
+  "authErrorNotCustomer": "Akun ini tidak terdaftar sebagai customer.",
+  "authErrorAccountDisabled": "Akun Anda dinonaktifkan. Hubungi admin.",
+  "authErrorUsernameTaken": "Username sudah dipakai. Silakan pilih username lain.",
+  "authErrorGeneric": "Terjadi kesalahan. Coba lagi.",
+  "signOutConfirmTitle": "Keluar dari akun?",
+  "signOutConfirmBody": "Anda perlu masuk lagi untuk melihat order.",
+  "signOutButton": "Keluar",
+  "accountStatusUnregisteredTitle": "Lengkapi data perusahaan",
+  "accountStatusUnregisteredBody": "Satu langkah lagi sebelum order Anda bisa ditampilkan.",
+  "accountStatusWaitingTitle": "Menunggu verifikasi admin",
+  "accountStatusWaitingBody": "Data Anda sudah diterima. Tim Indo Safety Marine akan memverifikasi akun Anda.",
+  "accountStatusInactiveTitle": "Akun Anda tidak aktif",
+  "accountStatusInactiveBody": "Akun ini dinonaktifkan oleh admin. Hubungi Indo Safety Marine untuk mengaktifkan kembali.",
+  "activationStep1": "Daftar akun",
+  "activationStep2": "Lengkapi data perusahaan",
+  "activationStep3": "Verifikasi admin ISM",
+  "activationStep3Hint": "Biasanya 1×24 jam kerja",
+  "activationCta": "Lengkapi sekarang",
+  "activationFormTitle": "Data perusahaan",
+  "activationFormSubtitle": "Data ini dipakai tim ISM untuk mencocokkan order dengan akun Anda.",
+  "fieldCustomerType": "Jenis customer",
+  "customerTypeCompany": "Perusahaan",
+  "customerTypeIndividual": "Perorangan",
+  "fieldCompanyName": "Nama perusahaan",
+  "fieldPhone": "No. HP",
+  "fieldTelp": "Telepon kantor",
+  "fieldOptional": "Opsional",
+  "fieldAddress": "Alamat",
+  "validationPhoneDigits": "Nomor HP hanya boleh angka.",
+  "activationSubmit": "Kirim permintaan aktivasi",
+  "activationFooter": "Setelah dikirim, status akun menjadi “Menunggu verifikasi” sampai disetujui admin ISM.",
+  "activationAlreadyExists": "Data customer dengan email ini sudah ada. Hubungi admin bila perlu diperbarui.",
+  "activationFailed": "Permintaan aktivasi gagal dikirim. Coba lagi.",
+  "contactCall": "Telepon",
+  "contactEmail": "Email",
+  "tabLockedMessage": "Tersedia setelah akun diverifikasi admin ISM.",
+  "homeStatTotal": "Total order",
+  "homeStatInProgress": "Sedang diproses",
+  "homeStatDone": "Selesai",
+  "homeRecentOrders": "Order terbaru",
+  "homeSeeAll": "Lihat semua",
+  "homeEmptyTitle": "Belum ada order",
+  "homeEmptyBody": "Order yang dibuat tim Indo Safety Marine untuk perusahaan Anda akan muncul di sini.",
+  "homeErrorBody": "Riwayat order gagal dimuat.",
+  "homeCachedNotice": "Menampilkan data terakhir yang tersimpan.",
+  "orderStageDraft": "Draft Work Form",
+  "orderStageInProgress": "Dalam proses",
+  "orderStageApproval": "Menunggu persetujuan",
+  "orderStageDone": "Selesai",
+  "orderStageRejected": "Ditolak",
+  "trackingStepOrder": "Order diterima",
+  "trackingStepWorkform": "Rekomendasi pekerjaan",
+  "trackingStepQuotation": "Penawaran & persetujuan",
+  "trackingStepService": "Service & kalibrasi",
+  "trackingStepCertificate": "Sertifikat",
+  "trackingStepInvoice": "Invoice",
+  "trackingStepDelivery": "Delivery Order",
+  "trackingFinished": "Selesai",
+  "trackingProgress": "{done}/{total} tahap",
+  "@trackingProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "trackingNoteWorkformEntry": "Work Form sedang diisi",
+  "trackingNoteQuotation": "Penawaran {no}",
+  "@trackingNoteQuotation": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteQuotationCreated": "Penawaran dibuat",
+  "trackingNoteServiceWaitingPo": "Service selesai, menunggu PO",
+  "trackingNoteCertNoPo": "Dicetak tanpa PO",
+  "trackingNotePo": "PO {no}",
+  "@trackingNotePo": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteInvoice": "{no} · {payment}",
+  "@trackingNoteInvoice": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      },
+      "payment": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteInvoiceNotIssued": "Invoice belum terbit",
+  "paymentPaid": "Lunas",
+  "paymentTempo": "Tempo",
+  "paymentUnpaid": "Belum Dibayar",
+  "trackingEventOrderCreated": "Order dibuat",
+  "trackingEventWorkformStarted": "Work Form mulai diisi",
+  "trackingEventRecommendationSent": "Rekomendasi pekerjaan dikirim ke client",
+  "trackingEventRecommendationApproved": "Client menyetujui rekomendasi pekerjaan",
+  "trackingEventRecommendationPending": "Rekomendasi pekerjaan ditandai pending",
+  "trackingEventRecommendationRejected": "Client menolak rekomendasi pekerjaan",
+  "trackingEventInspectionDecision": "Keputusan client atas rekomendasi pekerjaan",
+  "trackingEventPoReceivedCertificate": "PO diterima, sertifikat diproses",
+  "trackingEventServiceDoneWaitingPo": "Service selesai, menunggu PO",
+  "trackingEventServiceDoneCertificate": "Service selesai, masuk tahap sertifikat",
+  "trackingEventPoConfirmedCertificateReady": "PO dikonfirmasi, sertifikat siap diterbitkan",
+  "trackingEventDocumentRejected": "Dokumen ditolak",
+  "trackingEventQuotationCreated": "Penawaran dibuat",
+  "trackingEventQuotationUpdated": "Penawaran diperbarui",
+  "trackingEventPoRecorded": "Nomor PO dicatat",
+  "trackingEventPoUpdated": "Nomor PO diubah",
+  "trackingEventPoRemoved": "Nomor PO dihapus",
+  "trackingEventCertificateIssued": "Sertifikat diterbitkan",
+  "trackingEventInvoiceIssued": "Invoice diterbitkan",
+  "trackingEventInvoiceUpdated": "Invoice diperbarui",
+  "trackingEventInvoicePaid": "Pembayaran invoice lunas",
+  "trackingEventInvoiceUnpaid": "Status lunas invoice dibatalkan",
+  "trackingEventDeliveryOrderIssued": "Delivery Order diterbitkan",
+  "trackingEventReverted": "Proses dimundurkan untuk revisi"
 }
