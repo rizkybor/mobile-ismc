@@ -220,5 +220,97 @@
   "activationFailed": "Activation request could not be sent. Try again.",
   "contactCall": "Call",
   "contactEmail": "Email",
-  "tabLockedMessage": "Available after your account is verified by the ISM admin."
+  "tabLockedMessage": "Available after your account is verified by the ISM admin.",
+  "homeStatTotal": "Total orders",
+  "homeStatInProgress": "In progress",
+  "homeStatDone": "Completed",
+  "homeRecentOrders": "Recent orders",
+  "homeSeeAll": "See all",
+  "homeEmptyTitle": "No orders yet",
+  "homeEmptyBody": "Orders created by the Indo Safety Marine team for your company will appear here.",
+  "homeErrorBody": "Order history could not be loaded.",
+  "homeCachedNotice": "Showing the last saved data.",
+  "orderStageDraft": "Draft Work Form",
+  "orderStageInProgress": "In progress",
+  "orderStageApproval": "Awaiting approval",
+  "orderStageDone": "Completed",
+  "orderStageRejected": "Rejected",
+  "trackingStepOrder": "Order received",
+  "trackingStepWorkform": "Work recommendation",
+  "trackingStepQuotation": "Quotation & approval",
+  "trackingStepService": "Service & calibration",
+  "trackingStepCertificate": "Certificate",
+  "trackingStepInvoice": "Invoice",
+  "trackingStepDelivery": "Delivery Order",
+  "trackingFinished": "Completed",
+  "trackingProgress": "{done}/{total} stages",
+  "@trackingProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "trackingNoteWorkformEntry": "Work Form in progress",
+  "trackingNoteQuotation": "Quotation {no}",
+  "@trackingNoteQuotation": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteQuotationCreated": "Quotation created",
+  "trackingNoteServiceWaitingPo": "Service done, waiting for PO",
+  "trackingNoteCertNoPo": "Issued without PO",
+  "trackingNotePo": "PO {no}",
+  "@trackingNotePo": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteInvoice": "{no} · {payment}",
+  "@trackingNoteInvoice": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      },
+      "payment": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteInvoiceNotIssued": "Invoice not issued yet",
+  "paymentPaid": "Paid",
+  "paymentTempo": "Credit terms",
+  "paymentUnpaid": "Unpaid",
+  "trackingEventOrderCreated": "Order created",
+  "trackingEventWorkformStarted": "Work Form started",
+  "trackingEventRecommendationSent": "Work recommendation sent to client",
+  "trackingEventRecommendationApproved": "Client approved the work recommendation",
+  "trackingEventRecommendationPending": "Work recommendation marked pending",
+  "trackingEventRecommendationRejected": "Client rejected the work recommendation",
+  "trackingEventInspectionDecision": "Client decision on the work recommendation",
+  "trackingEventPoReceivedCertificate": "PO received, certificate in process",
+  "trackingEventServiceDoneWaitingPo": "Service done, waiting for PO",
+  "trackingEventServiceDoneCertificate": "Service done, entering certificate stage",
+  "trackingEventPoConfirmedCertificateReady": "PO confirmed, certificate ready to issue",
+  "trackingEventDocumentRejected": "Document rejected",
+  "trackingEventQuotationCreated": "Quotation created",
+  "trackingEventQuotationUpdated": "Quotation updated",
+  "trackingEventPoRecorded": "PO number recorded",
+  "trackingEventPoUpdated": "PO number changed",
+  "trackingEventPoRemoved": "PO number removed",
+  "trackingEventCertificateIssued": "Certificate issued",
+  "trackingEventInvoiceIssued": "Invoice issued",
+  "trackingEventInvoiceUpdated": "Invoice updated",
+  "trackingEventInvoicePaid": "Invoice paid",
+  "trackingEventInvoiceUnpaid": "Invoice paid status reverted",
+  "trackingEventDeliveryOrderIssued": "Delivery Order issued",
+  "trackingEventReverted": "Process reverted for revision"
 }

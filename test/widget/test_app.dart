@@ -7,8 +7,10 @@ import 'package:ism_customer/core/i18n/locale_controller.dart';
 import 'package:ism_customer/core/theme/app_theme.dart';
 import 'package:ism_customer/domain/account_status.dart';
 import 'package:ism_customer/domain/app_user.dart';
+import 'package:ism_customer/domain/order_models.dart';
 import 'package:ism_customer/features/activation/account_status_provider.dart';
 import 'package:ism_customer/features/auth/session_controller.dart';
+import 'package:ism_customer/features/home/orders_controller.dart';
 import 'package:ism_customer/shared/widgets/offline_banner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,10 +31,25 @@ class FakeSessionController extends SessionController {
   Session build() => initial;
 }
 
+/// Order palsu untuk widget test (tanpa Firebase).
+class FakeOrders extends CustomerOrdersController {
+  FakeOrders(this.orders, {this.fail = false});
+  final List<Order> orders;
+  final bool fail;
+
+  @override
+  Future<List<Order>> build() async {
+    if (fail) throw Exception('offline');
+    return orders;
+  }
+}
+
 Future<ProviderContainer> makeContainer({
   Map<String, Object> prefs = const {},
   Session session = const Session.ready(testUser),
   AccountStatus account = AccountStatus.active,
+  List<Order> orders = const [],
+  bool ordersFail = false,
 }) async {
   SharedPreferences.setMockInitialValues(prefs);
   final sp = await SharedPreferences.getInstance();
@@ -43,6 +60,9 @@ Future<ProviderContainer> makeContainer({
       sessionProvider.overrideWith(() => FakeSessionController(session)),
       accountStatusProvider.overrideWith(
         (_) => Stream.value(AccountState(account)),
+      ),
+      customerOrdersProvider.overrideWith(
+        () => FakeOrders(orders, fail: ordersFail),
       ),
     ],
   );

@@ -30,11 +30,11 @@ abstract final class Env {
       firebaseApiKey.isNotEmpty && firebaseProjectId.isNotEmpty;
 
   /// Host emulator: emulator Android memakai `10.0.2.2` untuk mencapai mesin
-  /// host; simulator iOS memakai `localhost`; HP fisik diisi lewat
+  /// host; simulator iOS memakai `127.0.0.1` (bukan `localhost`, agar tidak jatuh ke IPv6 ::1 yang tidak didengarkan emulator); HP fisik diisi lewat
   /// `EMULATOR_HOST` (IP komputer di jaringan yang sama).
   static String get emulatorHost {
     if (_emulatorHostOverride.isNotEmpty) return _emulatorHostOverride;
-    return Platform.isAndroid ? '10.0.2.2' : 'localhost';
+    return Platform.isAndroid ? '10.0.2.2' : '127.0.0.1';
   }
 
   static String get firebaseAppId =>

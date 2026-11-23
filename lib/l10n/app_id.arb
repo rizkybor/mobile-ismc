@@ -220,5 +220,97 @@
   "activationFailed": "Permintaan aktivasi gagal dikirim. Coba lagi.",
   "contactCall": "Telepon",
   "contactEmail": "Email",
-  "tabLockedMessage": "Tersedia setelah akun diverifikasi admin ISM."
+  "tabLockedMessage": "Tersedia setelah akun diverifikasi admin ISM.",
+  "homeStatTotal": "Total order",
+  "homeStatInProgress": "Sedang diproses",
+  "homeStatDone": "Selesai",
+  "homeRecentOrders": "Order terbaru",
+  "homeSeeAll": "Lihat semua",
+  "homeEmptyTitle": "Belum ada order",
+  "homeEmptyBody": "Order yang dibuat tim Indo Safety Marine untuk perusahaan Anda akan muncul di sini.",
+  "homeErrorBody": "Riwayat order gagal dimuat.",
+  "homeCachedNotice": "Menampilkan data terakhir yang tersimpan.",
+  "orderStageDraft": "Draft Work Form",
+  "orderStageInProgress": "Dalam proses",
+  "orderStageApproval": "Menunggu persetujuan",
+  "orderStageDone": "Selesai",
+  "orderStageRejected": "Ditolak",
+  "trackingStepOrder": "Order diterima",
+  "trackingStepWorkform": "Rekomendasi pekerjaan",
+  "trackingStepQuotation": "Penawaran & persetujuan",
+  "trackingStepService": "Service & kalibrasi",
+  "trackingStepCertificate": "Sertifikat",
+  "trackingStepInvoice": "Invoice",
+  "trackingStepDelivery": "Delivery Order",
+  "trackingFinished": "Selesai",
+  "trackingProgress": "{done}/{total} tahap",
+  "@trackingProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "trackingNoteWorkformEntry": "Work Form sedang diisi",
+  "trackingNoteQuotation": "Penawaran {no}",
+  "@trackingNoteQuotation": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteQuotationCreated": "Penawaran dibuat",
+  "trackingNoteServiceWaitingPo": "Service selesai, menunggu PO",
+  "trackingNoteCertNoPo": "Dicetak tanpa PO",
+  "trackingNotePo": "PO {no}",
+  "@trackingNotePo": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteInvoice": "{no} · {payment}",
+  "@trackingNoteInvoice": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      },
+      "payment": {
+        "type": "String"
+      }
+    }
+  },
+  "trackingNoteInvoiceNotIssued": "Invoice belum terbit",
+  "paymentPaid": "Lunas",
+  "paymentTempo": "Tempo",
+  "paymentUnpaid": "Belum Dibayar",
+  "trackingEventOrderCreated": "Order dibuat",
+  "trackingEventWorkformStarted": "Work Form mulai diisi",
+  "trackingEventRecommendationSent": "Rekomendasi pekerjaan dikirim ke client",
+  "trackingEventRecommendationApproved": "Client menyetujui rekomendasi pekerjaan",
+  "trackingEventRecommendationPending": "Rekomendasi pekerjaan ditandai pending",
+  "trackingEventRecommendationRejected": "Client menolak rekomendasi pekerjaan",
+  "trackingEventInspectionDecision": "Keputusan client atas rekomendasi pekerjaan",
+  "trackingEventPoReceivedCertificate": "PO diterima, sertifikat diproses",
+  "trackingEventServiceDoneWaitingPo": "Service selesai, menunggu PO",
+  "trackingEventServiceDoneCertificate": "Service selesai, masuk tahap sertifikat",
+  "trackingEventPoConfirmedCertificateReady": "PO dikonfirmasi, sertifikat siap diterbitkan",
+  "trackingEventDocumentRejected": "Dokumen ditolak",
+  "trackingEventQuotationCreated": "Penawaran dibuat",
+  "trackingEventQuotationUpdated": "Penawaran diperbarui",
+  "trackingEventPoRecorded": "Nomor PO dicatat",
+  "trackingEventPoUpdated": "Nomor PO diubah",
+  "trackingEventPoRemoved": "Nomor PO dihapus",
+  "trackingEventCertificateIssued": "Sertifikat diterbitkan",
+  "trackingEventInvoiceIssued": "Invoice diterbitkan",
+  "trackingEventInvoiceUpdated": "Invoice diperbarui",
+  "trackingEventInvoicePaid": "Pembayaran invoice lunas",
+  "trackingEventInvoiceUnpaid": "Status lunas invoice dibatalkan",
+  "trackingEventDeliveryOrderIssued": "Delivery Order diterbitkan",
+  "trackingEventReverted": "Proses dimundurkan untuk revisi"
 }

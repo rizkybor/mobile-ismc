@@ -6,7 +6,6 @@ import 'package:ism_customer/domain/account_status.dart';
 import 'package:ism_customer/features/activation/screens/activation_screen.dart';
 import 'package:ism_customer/features/activation/widgets/account_status_card.dart';
 import 'package:ism_customer/features/splash/splash_screen.dart';
-import 'package:ism_customer/shared/widgets/stage_placeholder.dart';
 
 import 'test_app.dart';
 
@@ -71,7 +70,7 @@ void main() {
   testWidgets('aktif → tidak ada kartu status, tab terbuka', (tester) async {
     await pumpWithAccount(tester, AccountStatus.active);
     expect(find.byType(AccountStatusCard), findsNothing);
-    expect(find.byType(StagePlaceholder), findsOneWidget);
+    expect(find.text('Belum ada order'), findsOneWidget);
     expect(find.byIcon(Icons.lock), findsNothing);
     await tester.tap(find.text('Lacak'));
     await tester.pumpAndSettle();
