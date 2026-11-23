@@ -2,16 +2,20 @@
 
 Aplikasi mobile untuk **customer PT Indo Safety Marine** memantau order kalibrasi yang dibuat tim ISM di **ISM CSMS**: progres 7 tahap, dokumen resmi (Penawaran, Invoice, Sertifikat), dan notifikasi. Customer **tidak** membuat order dan tidak ada fitur chat.
 
+Aplikasi **dua bahasa: Bahasa Indonesia (default) & English**, bisa diganti kapan saja di aplikasi.
+
 Backend memakai Firebase project CSMS yang sudah ada (Authentication + Cloud Firestore, paket Spark) dan Security Rules yang sama dengan portal web.
 
 ## Dokumen
+
+> Folder `docs/` dan `prompts/` adalah dokumen internal dan **tidak disimpan di git** (lihat `.gitignore`). Minta salinannya ke tim ISM; tautan di bawah berlaku pada salinan lokal.
 
 | Dokumen | Isi |
 |---|---|
 | [docs/01-BRD.md](docs/01-BRD.md) | Kebutuhan bisnis: tujuan & KPI, ruang lingkup, aturan bisnis, risiko, keputusan yang dibutuhkan |
 | [docs/02-PRD.md](docs/02-PRD.md) | Kebutuhan produk: arsitektur, fitur & kriteria penerimaan, kontrak data Firestore, logika 7 tahap, dokumen PDF, desain |
 | [docs/03-FLOWCHART.md](docs/03-FLOWCHART.md) | Diagram alur (Mermaid): aplikasi, daftar, masuk, aktivasi, siklus order, 7 tahap, PDF, notifikasi, hapus akun, tahapan pengembangan |
-| [docs/03-FLOWCHART.pdf](docs/03-FLOWCHART.pdf) | Versi PDF flowchart (11 halaman, ±64 KB) untuk dibagikan / dicetak |
+| [docs/03-FLOWCHART.pdf](docs/03-FLOWCHART.pdf) | Versi PDF flowchart untuk dibagikan / dicetak |
 
 ## Tahapan pengembangan & prompt
 

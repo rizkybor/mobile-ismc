@@ -27,3 +27,7 @@ credentials.json
 .vscode/
 .idea/
 coverage/
+
+# Dokumen internal (BRD, PRD, flowchart, prompt) — hanya disimpan lokal
+docs/
+prompts/
