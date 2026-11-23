@@ -11,6 +11,7 @@ Backend memakai Firebase project CSMS yang sudah ada (Authentication + Cloud Fir
 | [docs/01-BRD.md](docs/01-BRD.md) | Kebutuhan bisnis: tujuan & KPI, ruang lingkup, aturan bisnis, risiko, keputusan yang dibutuhkan |
 | [docs/02-PRD.md](docs/02-PRD.md) | Kebutuhan produk: arsitektur, fitur & kriteria penerimaan, kontrak data Firestore, logika 7 tahap, dokumen PDF, desain |
 | [docs/03-FLOWCHART.md](docs/03-FLOWCHART.md) | Diagram alur (Mermaid): aplikasi, daftar, masuk, aktivasi, siklus order, 7 tahap, PDF, notifikasi, hapus akun, tahapan pengembangan |
+| [docs/03-FLOWCHART.pdf](docs/03-FLOWCHART.pdf) | Versi PDF flowchart (11 halaman, ±64 KB) untuk dibagikan / dicetak |
 
 ## Tahapan pengembangan & prompt
 
