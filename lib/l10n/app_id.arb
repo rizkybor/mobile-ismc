@@ -312,5 +312,71 @@
   "trackingEventInvoicePaid": "Pembayaran invoice lunas",
   "trackingEventInvoiceUnpaid": "Status lunas invoice dibatalkan",
   "trackingEventDeliveryOrderIssued": "Delivery Order diterbitkan",
-  "trackingEventReverted": "Proses dimundurkan untuk revisi"
+  "trackingEventReverted": "Proses dimundurkan untuk revisi",
+  "trackingSearchHint": "Cari No. order, vessel, status, produk",
+  "trackingFilterActive": "Berjalan",
+  "trackingFilterDone": "Selesai",
+  "trackingEmptyTitle": "Belum ada order",
+  "trackingNoResultsTitle": "Tidak ada hasil",
+  "trackingNoResultsBody": "Coba kata kunci atau filter lain.",
+  "trackingCount": "{n} order",
+  "@trackingCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "orderNotFoundTitle": "Order tidak ditemukan",
+  "orderNotFoundBody": "Order ini tidak ada atau bukan milik akun Anda.",
+  "detailStatus": "Status",
+  "detailCreated": "Dibuat",
+  "detailVessel": "Vessel",
+  "detailProgressTitle": "Progres 7 tahap",
+  "detailProductsTitle": "Daftar alat",
+  "detailProductBrand": "Merk",
+  "detailProductType": "Tipe",
+  "detailProductSn": "S/N",
+  "detailHistoryTitle": "Riwayat",
+  "detailShowAll": "Tampilkan semua",
+  "detailShowLess": "Tampilkan lebih sedikit",
+  "detailHistoryApprox": "Riwayat disusun dari data yang tersedia.",
+  "detailHistoryEmpty": "Belum ada riwayat.",
+  "detailDocumentsTitle": "Dokumen",
+  "detailShare": "Bagikan ringkasan",
+  "shareSummary": "Order {no}\nVessel: {vessel}\nTahap saat ini: {stage}\n— ISM Customer",
+  "@shareSummary": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      },
+      "vessel": {
+        "type": "String"
+      },
+      "stage": {
+        "type": "String"
+      }
+    }
+  },
+  "stepDoneAt": "Selesai · {date}",
+  "@stepDoneAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "stepDone": "Selesai",
+  "stepCurrent": "Sedang berjalan",
+  "stepPending": "Tertunda",
+  "stepRejected": "Ditolak",
+  "stepWaiting": "Menunggu",
+  "historyBy": "oleh {by}",
+  "@historyBy": {
+    "placeholders": {
+      "by": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -11,6 +11,7 @@ import 'package:ism_customer/domain/order_models.dart';
 import 'package:ism_customer/features/activation/account_status_provider.dart';
 import 'package:ism_customer/features/auth/session_controller.dart';
 import 'package:ism_customer/features/home/orders_controller.dart';
+import 'package:ism_customer/features/tracking/order_detail_provider.dart';
 import 'package:ism_customer/shared/widgets/offline_banner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,22 +51,24 @@ Future<ProviderContainer> makeContainer({
   AccountStatus account = AccountStatus.active,
   List<Order> orders = const [],
   bool ordersFail = false,
+  Future<Order?> Function(String id)? orderDetail,
 }) async {
   SharedPreferences.setMockInitialValues(prefs);
   final sp = await SharedPreferences.getInstance();
-  final container = ProviderContainer(
-    overrides: [
-      sharedPreferencesProvider.overrideWithValue(sp),
-      isOfflineProvider.overrideWith((_) => Stream.value(false)),
-      sessionProvider.overrideWith(() => FakeSessionController(session)),
-      accountStatusProvider.overrideWith(
-        (_) => Stream.value(AccountState(account)),
-      ),
-      customerOrdersProvider.overrideWith(
-        () => FakeOrders(orders, fail: ordersFail),
-      ),
-    ],
-  );
+  final overrides = [
+    sharedPreferencesProvider.overrideWithValue(sp),
+    isOfflineProvider.overrideWith((_) => Stream.value(false)),
+    sessionProvider.overrideWith(() => FakeSessionController(session)),
+    accountStatusProvider.overrideWith(
+      (_) => Stream.value(AccountState(account)),
+    ),
+    customerOrdersProvider.overrideWith(
+      () => FakeOrders(orders, fail: ordersFail),
+    ),
+    if (orderDetail != null)
+      orderDetailProvider.overrideWith((ref, id) => orderDetail(id)),
+  ];
+  final container = ProviderContainer(overrides: overrides);
   addTearDown(container.dispose);
   return container;
 }

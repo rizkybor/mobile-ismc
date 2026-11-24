@@ -312,5 +312,71 @@
   "trackingEventInvoicePaid": "Invoice paid",
   "trackingEventInvoiceUnpaid": "Invoice paid status reverted",
   "trackingEventDeliveryOrderIssued": "Delivery Order issued",
-  "trackingEventReverted": "Process reverted for revision"
+  "trackingEventReverted": "Process reverted for revision",
+  "trackingSearchHint": "Search order no., vessel, status, product",
+  "trackingFilterActive": "Active",
+  "trackingFilterDone": "Completed",
+  "trackingEmptyTitle": "No orders yet",
+  "trackingNoResultsTitle": "No results",
+  "trackingNoResultsBody": "Try another keyword or filter.",
+  "trackingCount": "{n} orders",
+  "@trackingCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "orderNotFoundTitle": "Order not found",
+  "orderNotFoundBody": "This order does not exist or does not belong to your account.",
+  "detailStatus": "Status",
+  "detailCreated": "Created",
+  "detailVessel": "Vessel",
+  "detailProgressTitle": "7-stage progress",
+  "detailProductsTitle": "Equipment",
+  "detailProductBrand": "Brand",
+  "detailProductType": "Type",
+  "detailProductSn": "S/N",
+  "detailHistoryTitle": "History",
+  "detailShowAll": "Show all",
+  "detailShowLess": "Show less",
+  "detailHistoryApprox": "History compiled from available data.",
+  "detailHistoryEmpty": "No history yet.",
+  "detailDocumentsTitle": "Documents",
+  "detailShare": "Share summary",
+  "shareSummary": "Order {no}\nVessel: {vessel}\nCurrent stage: {stage}\n— ISM Customer",
+  "@shareSummary": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      },
+      "vessel": {
+        "type": "String"
+      },
+      "stage": {
+        "type": "String"
+      }
+    }
+  },
+  "stepDoneAt": "Done · {date}",
+  "@stepDoneAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "stepDone": "Done",
+  "stepCurrent": "In progress",
+  "stepPending": "On hold",
+  "stepRejected": "Rejected",
+  "stepWaiting": "Waiting",
+  "historyBy": "by {by}",
+  "@historyBy": {
+    "placeholders": {
+      "by": {
+        "type": "String"
+      }
+    }
+  }
 }
