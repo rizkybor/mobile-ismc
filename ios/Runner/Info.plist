@@ -51,6 +51,14 @@
 	     GIDClientID dan skema com.googleusercontent.apps.<id> saat tersedia. -->
 	<key>GIDClientID</key>
 	<string>REPLACE_WITH_IOS_CLIENT_ID.apps.googleusercontent.com</string>
+	<!-- Firebase Emulator di jaringan lokal memakai HTTP tanpa TLS -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Dipakai saat pengembangan untuk terhubung ke Firebase Emulator di komputer pengembang.</string>
 	<key>LSRequiresIPhoneOS</key>
 		<true/>
 		<key>UIApplicationSceneManifest</key>

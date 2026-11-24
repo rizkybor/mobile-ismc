@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,6 +27,10 @@ class SignInNeedsVerification extends SignInResult {
 /// Alur Firebase Auth + validasi dokumen `users` (PRD F-01, flowchart §2–3).
 class AuthRepository {
   AuthRepository(this._auth, this._users);
+
+  /// Batas waktu panggilan jaringan auth agar UI tidak menggantung bila
+  /// host (mis. emulator di LAN) tidak terjangkau.
+  static const networkTimeout = Duration(seconds: 20);
   final FirebaseAuth _auth;
   final UsersRepository _users;
 
@@ -74,15 +80,16 @@ class AuthRepository {
   Future<SignInResult> signIn(String email, String password) async {
     final UserCredential cred;
     try {
-      cred = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      cred = await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .timeout(networkTimeout);
     } on FirebaseAuthException catch (e) {
       throw AuthFailure(
         AuthErrorMapper.fromCode(e.code, message: e.message),
         code: e.code,
       );
+    } on TimeoutException {
+      throw const AuthFailure(AuthErrorKind.network, code: 'timeout');
     }
     return validateCurrentUser(cred.user!);
   }
@@ -96,14 +103,18 @@ class AuthRepository {
     if (g == null) return null;
     final UserCredential cred;
     try {
-      cred = await _auth.signInWithCredential(
-        GoogleAuthProvider.credential(idToken: g.idToken),
-      );
+      cred = await _auth
+          .signInWithCredential(
+            GoogleAuthProvider.credential(idToken: g.idToken),
+          )
+          .timeout(networkTimeout);
     } on FirebaseAuthException catch (e) {
       throw AuthFailure(
         AuthErrorMapper.fromCode(e.code, message: e.message),
         code: e.code,
       );
+    } on TimeoutException {
+      throw const AuthFailure(AuthErrorKind.network, code: 'timeout');
     }
     final user = cred.user!;
     try {

@@ -601,5 +601,6 @@
   "loginGoogle": "Sign in with Google",
   "authOr": "or",
   "authErrorGoogleUnverified": "This Google account's email is not verified. Use another account or register with email.",
-  "authErrorGoogleNotConfigured": "Sign in with Google is not configured in this build."
+  "authErrorGoogleNotConfigured": "Sign in with Google is not configured in this build.",
+  "debugPingEmulator": "Test emulator connection"
 }
