@@ -133,22 +133,7 @@ class WelcomeScreen extends ConsumerWidget {
                             onPressed: () => context.push(Routes.register),
                           ),
                           const SizedBox(height: AppSpacing.md),
-                          GoogleSignInButton(
-                            withDivider: false,
-                            onPressed: () => ref
-                                .read(sessionProvider.notifier)
-                                .signInWithGoogle()
-                                .catchError((Object e) {
-                                  if (context.mounted) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(authErrorText(l10n, e)),
-                                      ),
-                                    );
-                                  }
-                                  return false;
-                                }),
-                          ),
+                          const _WelcomeGoogleButton(),
                         ],
                       ),
                     ),
@@ -191,4 +176,37 @@ class _Feature extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Tombol Google di Welcome dengan status memuat & pesan galat.
+class _WelcomeGoogleButton extends ConsumerStatefulWidget {
+  const _WelcomeGoogleButton();
+
+  @override
+  ConsumerState<_WelcomeGoogleButton> createState() =>
+      _WelcomeGoogleButtonState();
+}
+
+class _WelcomeGoogleButtonState extends ConsumerState<_WelcomeGoogleButton> {
+  bool _loading = false;
+
+  Future<void> _go() async {
+    final l10n = context.l10n;
+    setState(() => _loading = true);
+    try {
+      await ref.read(sessionProvider.notifier).signInWithGoogle();
+    } on Object catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(SnackBar(content: Text(authErrorText(l10n, e))));
+      }
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      GoogleSignInButton(withDivider: false, loading: _loading, onPressed: _go);
 }

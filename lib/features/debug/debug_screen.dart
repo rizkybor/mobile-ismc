@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,6 +32,26 @@ class _DebugScreenState extends ConsumerState<DebugScreen> {
   bool _busy = false;
   int? _count;
   String? _error;
+  String? _ping;
+
+  Future<void> _pingEmulator() async {
+    final host = Env.emulatorHost;
+    setState(() => _ping = '…');
+    final client = HttpClient()..connectionTimeout = const Duration(seconds: 5);
+    try {
+      final req = await client.getUrl(
+        Uri.parse('http://$host:${Env.authEmulatorPort}/'),
+      );
+      final res = await req.close().timeout(const Duration(seconds: 5));
+      setState(
+        () => _ping = 'HTTP ${res.statusCode} $host:${Env.authEmulatorPort}',
+      );
+    } on Object catch (e) {
+      setState(() => _ping = '$host: $e');
+    } finally {
+      client.close();
+    }
+  }
 
   Future<void> _loginAndCount() async {
     setState(() {
@@ -114,7 +136,17 @@ class _DebugScreenState extends ConsumerState<DebugScreen> {
                   const SizedBox(height: AppSpacing.sm),
                   Text(_error!, style: const TextStyle(color: AppColors.error)),
                 ],
+                if (_ping != null) ...[
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(_ping!, style: const TextStyle(fontSize: 12)),
+                ],
                 const SizedBox(height: AppSpacing.lg),
+                AppButton(
+                  label: l10n.debugPingEmulator,
+                  variant: AppButtonVariant.outline,
+                  onPressed: Env.useEmulator ? _pingEmulator : null,
+                ),
+                const SizedBox(height: AppSpacing.sm),
                 AppButton(
                   label: l10n.debugLoginSeed,
                   loading: _busy,
