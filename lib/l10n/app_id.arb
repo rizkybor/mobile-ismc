@@ -602,5 +602,21 @@
   "authOr": "atau",
   "authErrorGoogleUnverified": "Email akun Google ini belum terverifikasi. Gunakan akun lain atau daftar dengan email.",
   "authErrorGoogleNotConfigured": "Masuk dengan Google belum dikonfigurasi di build ini.",
-  "debugPingEmulator": "Tes koneksi emulator"
+  "debugPingEmulator": "Tes koneksi emulator",
+  "creditCopyright": "© {year} PT Indo Safety Marine",
+  "creditDevelopedBy": "Developed by {dev}",
+  "@creditCopyright": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "@creditDevelopedBy": {
+    "placeholders": {
+      "dev": {
+        "type": "String"
+      }
+    }
+  }
 }

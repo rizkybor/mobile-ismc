@@ -8,4 +8,9 @@ abstract final class IsmContacts {
   static const email = 'info@indosafetymarine.com';
   static const website = 'https://www.indosafetymarine.com';
   static const companyName = 'PT Indo Safety Marine';
+
+  /// Kredit pengembang (footer).
+  static const developerName = 'JCD';
+  static const developerUrl = 'https://jcdigital.co.id';
+  static const copyrightYear = '2026';
 }

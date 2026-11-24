@@ -134,6 +134,8 @@ class WelcomeScreen extends ConsumerWidget {
                           ),
                           const SizedBox(height: AppSpacing.md),
                           const _WelcomeGoogleButton(),
+                          const SizedBox(height: AppSpacing.sm),
+                          const CreditsFooter(),
                         ],
                       ),
                     ),
