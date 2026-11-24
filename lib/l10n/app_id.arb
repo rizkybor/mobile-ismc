@@ -406,5 +406,127 @@
   "docErrorBody": "Dokumen gagal dimuat. Periksa koneksi lalu coba lagi.",
   "docLegacyTitle": "Dokumen lama",
   "docLegacyBody": "Dokumen ini tersimpan dalam format lama. Buka lewat portal web ISM.",
-  "docOpenPortal": "Buka portal web"
+  "docOpenPortal": "Buka portal web",
+  "notifUnreadCount": "{n} belum dibaca",
+  "@notifUnreadCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "notifMarkAllRead": "Tandai dibaca",
+  "notifEmptyTitle": "Belum ada notifikasi",
+  "notifEmptyBody": "Kabar perkembangan order Anda dari tim ISM akan muncul di sini.",
+  "notifOrderReceived": "Order diterima",
+  "notifOrderReceivedBody": "Order {ordersNo} sudah kami terima dan sedang diperiksa tim kami.",
+  "@notifOrderReceivedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifRecommendationQuotation": "Rekomendasi pekerjaan & penawaran",
+  "notifRecommendationQuotationBody": "Rekomendasi pekerjaan & penawaran order {ordersNo} menunggu persetujuan Anda.",
+  "@notifRecommendationQuotationBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifApprovalReceived": "Persetujuan diterima",
+  "notifApprovalReceivedBody": "Order {ordersNo} lanjut ke tahap service & kalibrasi.",
+  "@notifApprovalReceivedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifOrderOnHold": "Order ditunda",
+  "notifOrderOnHoldBody": "Order {ordersNo} ditunda sementara. Tim kami akan menghubungi Anda.",
+  "@notifOrderOnHoldBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifRecommendationRejected": "Rekomendasi ditolak",
+  "notifRecommendationRejectedBody": "Rekomendasi pekerjaan order {ordersNo} ditolak.",
+  "@notifRecommendationRejectedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifPoReceived": "PO diterima",
+  "notifPoReceivedBody": "PO order {ordersNo} sudah kami terima, sertifikat segera diproses.",
+  "@notifPoReceivedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifWaitingPo": "Menunggu Purchase Order",
+  "notifWaitingPoBody": "Service order {ordersNo} selesai. Mohon kirimkan PO untuk penerbitan sertifikat.",
+  "@notifWaitingPoBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifServiceDone": "Service selesai",
+  "notifServiceDoneBody": "Order {ordersNo} masuk tahap penerbitan sertifikat.",
+  "@notifServiceDoneBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDocumentRejected": "Dokumen ditolak",
+  "notifDocumentRejectedBody": "Dokumen order {ordersNo} ditolak. Hubungi kami untuk informasi lebih lanjut.",
+  "@notifDocumentRejectedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifCertificateReady": "Sertifikat siap",
+  "notifCertificateReadyBody": "PO {poNo} untuk order {ordersNo} tercatat, sertifikat siap diterbitkan.",
+  "@notifCertificateReadyBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      },
+      "poNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDeliveryOrderIssued": "Delivery Order diterbitkan",
+  "notifDeliveryOrderIssuedBody": "Order {ordersNo} dikirim dengan No. DO {doNo}.",
+  "@notifDeliveryOrderIssuedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      },
+      "doNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifAccountVerified": "Akun terverifikasi",
+  "notifAccountVerifiedBody": "Akun Anda sudah diverifikasi. Sekarang Anda bisa melihat order.",
+  "notifAccountActivated": "Akun diaktifkan",
+  "notifAccountActivatedBody": "Akun Anda aktif kembali.",
+  "notifAccountDeactivated": "Akun dinonaktifkan",
+  "notifAccountDeactivatedBody": "Akun Anda dinonaktifkan. Hubungi admin untuk informasi lebih lanjut."
 }

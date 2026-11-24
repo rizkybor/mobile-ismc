@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../core/i18n/l10n.dart';
 import '../core/theme/app_colors.dart';
 import '../features/activation/account_status_provider.dart';
+import '../features/notifications/notifications_provider.dart';
 
 /// Kerangka tab bawah: Beranda, Lacak, Notifikasi, Profil (PRD §10).
 /// Padanan ikon mdi web: home-outline, map-marker-path, bell-outline,
@@ -20,6 +21,7 @@ class AppShell extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final active = ref.watch(isAccountActiveProvider);
+    final unread = ref.watch(unreadCountProvider);
     return Scaffold(
       extendBody: true,
       body: shell,
@@ -61,8 +63,13 @@ class AppShell extends ConsumerWidget {
               icon: _LockableIcon(
                 Icons.notifications_outlined,
                 locked: !active,
+                badge: unread,
               ),
-              selectedIcon: const Icon(Icons.notifications_rounded),
+              selectedIcon: _LockableIcon(
+                Icons.notifications_rounded,
+                locked: false,
+                badge: unread,
+              ),
               label: l10n.tabNotifications,
             ),
             NavigationDestination(
@@ -78,12 +85,22 @@ class AppShell extends ConsumerWidget {
 }
 
 class _LockableIcon extends StatelessWidget {
-  const _LockableIcon(this.icon, {required this.locked});
+  const _LockableIcon(this.icon, {required this.locked, this.badge = 0});
   final IconData icon;
   final bool locked;
 
+  /// Jumlah belum dibaca (badge merah) bila > 0 dan tidak terkunci.
+  final int badge;
+
   @override
   Widget build(BuildContext context) {
+    if (!locked && badge > 0) {
+      return Badge.count(
+        count: badge,
+        backgroundColor: AppColors.accentRed,
+        child: Icon(icon),
+      );
+    }
     if (!locked) return Icon(icon);
     return Badge(
       backgroundColor: AppColors.textMuted,

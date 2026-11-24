@@ -10,6 +10,7 @@ import '../../data/documents_repository.dart';
 import '../../data/firebase_providers.dart';
 import '../../domain/app_user.dart';
 import '../../domain/auth_rules.dart';
+import '../notifications/push_service.dart';
 
 /// Status sesi untuk guard navigasi (PRD §3).
 enum SessionStatus { loading, signedOut, needsVerification, ready }
@@ -83,6 +84,10 @@ class SessionController extends Notifier<Session> {
       SignInReady(:final user) => Session.ready(user),
       SignInNeedsVerification(:final email) => Session.needsVerification(email),
     };
+    if (result is SignInReady) {
+      // Fase 2: daftarkan token push (tidak berbuat apa-apa bila PUSH_ENABLED=false).
+      unawaited(ref.read(pushServiceProvider).register(result.user));
+    }
   }
 
   Future<void> signIn(String email, String password) async {
@@ -141,6 +146,7 @@ class SessionController extends Notifier<Session> {
   Future<void> signOut() async {
     _busy = true;
     try {
+      await ref.read(pushServiceProvider).unregister();
       await ref.read(authRepositoryProvider).signOut();
       // Cache lokal milik sesi (ringkasan order dsb.) dibersihkan di sini;
       // pilihan bahasa `app.language` sengaja dipertahankan.

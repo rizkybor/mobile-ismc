@@ -406,5 +406,127 @@
   "docErrorBody": "Document could not be loaded. Check your connection and try again.",
   "docLegacyTitle": "Legacy document",
   "docLegacyBody": "This document is stored in the old format. Open it via the ISM web portal.",
-  "docOpenPortal": "Open web portal"
+  "docOpenPortal": "Open web portal",
+  "notifUnreadCount": "{n} unread",
+  "@notifUnreadCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "notifMarkAllRead": "Mark all read",
+  "notifEmptyTitle": "No notifications yet",
+  "notifEmptyBody": "Updates on your orders from the ISM team will appear here.",
+  "notifOrderReceived": "Order received",
+  "notifOrderReceivedBody": "Order {ordersNo} has been received and is being reviewed by our team.",
+  "@notifOrderReceivedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifRecommendationQuotation": "Work recommendation & quotation",
+  "notifRecommendationQuotationBody": "The work recommendation & quotation for order {ordersNo} await your approval.",
+  "@notifRecommendationQuotationBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifApprovalReceived": "Approval received",
+  "notifApprovalReceivedBody": "Order {ordersNo} proceeds to service & calibration.",
+  "@notifApprovalReceivedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifOrderOnHold": "Order on hold",
+  "notifOrderOnHoldBody": "Order {ordersNo} is temporarily on hold. Our team will contact you.",
+  "@notifOrderOnHoldBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifRecommendationRejected": "Recommendation rejected",
+  "notifRecommendationRejectedBody": "The work recommendation for order {ordersNo} was rejected.",
+  "@notifRecommendationRejectedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifPoReceived": "PO received",
+  "notifPoReceivedBody": "The PO for order {ordersNo} has been received; the certificate will be processed shortly.",
+  "@notifPoReceivedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifWaitingPo": "Waiting for Purchase Order",
+  "notifWaitingPoBody": "Service for order {ordersNo} is done. Please send the PO to issue the certificate.",
+  "@notifWaitingPoBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifServiceDone": "Service completed",
+  "notifServiceDoneBody": "Order {ordersNo} enters the certificate issuance stage.",
+  "@notifServiceDoneBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDocumentRejected": "Document rejected",
+  "notifDocumentRejectedBody": "A document for order {ordersNo} was rejected. Contact us for details.",
+  "@notifDocumentRejectedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifCertificateReady": "Certificate ready",
+  "notifCertificateReadyBody": "PO {poNo} for order {ordersNo} is recorded; the certificate is ready to issue.",
+  "@notifCertificateReadyBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      },
+      "poNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDeliveryOrderIssued": "Delivery Order issued",
+  "notifDeliveryOrderIssuedBody": "Order {ordersNo} was shipped with DO No. {doNo}.",
+  "@notifDeliveryOrderIssuedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      },
+      "doNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifAccountVerified": "Account verified",
+  "notifAccountVerifiedBody": "Your account has been verified. You can now see your orders.",
+  "notifAccountActivated": "Account activated",
+  "notifAccountActivatedBody": "Your account is active again.",
+  "notifAccountDeactivated": "Account deactivated",
+  "notifAccountDeactivatedBody": "Your account has been deactivated. Contact the admin for details."
 }
