@@ -4,6 +4,7 @@ export 'app_loader.dart';
 export 'app_scaffold.dart';
 export 'app_text_field.dart';
 export 'brand_header.dart';
+export 'credits_footer.dart';
 export 'empty_state.dart';
 export 'error_state.dart';
 export 'inline_message.dart';

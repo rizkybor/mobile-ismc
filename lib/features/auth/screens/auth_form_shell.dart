@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/config/contacts.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../shared/widgets/widgets.dart';
@@ -39,6 +40,29 @@ class AuthFormShell extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: AppColors.surface,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: AppColors.borderSoft),
+                    boxShadow: AppColors.cardShadow,
+                  ),
+                  child: Image.asset('assets/images/logo-ism.png', height: 40),
+                ),
+                const SizedBox(width: AppSpacing.md),
+                Text(
+                  IsmContacts.companyName.toUpperCase(),
+                  style: t.labelSmall?.copyWith(
+                    letterSpacing: 1.6,
+                    color: AppColors.primary,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.xl),
             Text(title, style: t.headlineSmall),
             const SizedBox(height: AppSpacing.sm),
             Text(
@@ -47,6 +71,8 @@ class AuthFormShell extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.xl),
             ...children,
+            const SizedBox(height: AppSpacing.lg),
+            const CreditsFooter(),
           ],
         ),
       ),

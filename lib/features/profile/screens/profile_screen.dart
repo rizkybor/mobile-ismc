@@ -358,6 +358,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             icon: Icons.delete_outline_rounded,
             onPressed: () => context.push(Routes.deleteAccount),
           ),
+          const SizedBox(height: AppSpacing.md),
+          const CreditsFooter(),
         ],
       ),
     );

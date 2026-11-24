@@ -602,5 +602,21 @@
   "authOr": "or",
   "authErrorGoogleUnverified": "This Google account's email is not verified. Use another account or register with email.",
   "authErrorGoogleNotConfigured": "Sign in with Google is not configured in this build.",
-  "debugPingEmulator": "Test emulator connection"
+  "debugPingEmulator": "Test emulator connection",
+  "creditCopyright": "© {year} PT Indo Safety Marine",
+  "creditDevelopedBy": "Developed by {dev}",
+  "@creditCopyright": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "@creditDevelopedBy": {
+    "placeholders": {
+      "dev": {
+        "type": "String"
+      }
+    }
+  }
 }
