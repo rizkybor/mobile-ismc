@@ -618,5 +618,16 @@
         "type": "String"
       }
     }
+  },
+  "creditVersion": "v{version} ({build})",
+  "@creditVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "build": {
+        "type": "String"
+      }
+    }
   }
 }
