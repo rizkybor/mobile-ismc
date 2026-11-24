@@ -64,6 +64,8 @@ cp env/example.json env/dev.json   # env/*.json di-ignore git, kecuali example.j
 
 Konfigurasi dibaca lewat `--dart-define-from-file`, jadi **tidak ada** `firebase_options.dart`, `google-services.json`, atau `GoogleService-Info.plist` di repo.
 
+Untuk mencoba ke Firebase **produksi** (tanpa emulator) buat `env/ism.json` dari `env/example.json` dengan nilai proyek CSMS dan `USE_EMULATOR: false`, lalu `tool/run.sh ism -d <device>` atau `flutter build ios --debug --dart-define-from-file=env/ism.json`. Akun yang dipakai harus akun customer nyata (daftar lewat aplikasi/portal lalu diverifikasi admin).
+
 ### Firebase Emulator (data uji)
 
 Dari repo `admin-indosafetymarine`:
