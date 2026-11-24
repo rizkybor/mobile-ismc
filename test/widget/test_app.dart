@@ -7,10 +7,14 @@ import 'package:ism_customer/core/i18n/locale_controller.dart';
 import 'package:ism_customer/core/theme/app_theme.dart';
 import 'package:ism_customer/domain/account_status.dart';
 import 'package:ism_customer/domain/app_user.dart';
+import 'package:ism_customer/domain/notification_models.dart';
 import 'package:ism_customer/domain/order_models.dart';
 import 'package:ism_customer/features/activation/account_status_provider.dart';
 import 'package:ism_customer/features/auth/session_controller.dart';
 import 'package:ism_customer/features/home/orders_controller.dart';
+import 'package:ism_customer/features/notifications/notifications_provider.dart';
+import 'package:ism_customer/features/onboarding/onboarding_controller.dart';
+import 'package:ism_customer/features/tracking/order_detail_provider.dart';
 import 'package:ism_customer/shared/widgets/offline_banner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -48,24 +52,33 @@ Future<ProviderContainer> makeContainer({
   Map<String, Object> prefs = const {},
   Session session = const Session.ready(testUser),
   AccountStatus account = AccountStatus.active,
+  CustomerProfile? customer,
   List<Order> orders = const [],
   bool ordersFail = false,
+  Future<Order?> Function(String id)? orderDetail,
+  List<AppNotification> notifications = const [],
+  bool onboardingDone = true,
 }) async {
-  SharedPreferences.setMockInitialValues(prefs);
+  SharedPreferences.setMockInitialValues({
+    if (onboardingDone) OnboardingController.prefKey(testUser.uid): true,
+    ...prefs,
+  });
   final sp = await SharedPreferences.getInstance();
-  final container = ProviderContainer(
-    overrides: [
-      sharedPreferencesProvider.overrideWithValue(sp),
-      isOfflineProvider.overrideWith((_) => Stream.value(false)),
-      sessionProvider.overrideWith(() => FakeSessionController(session)),
-      accountStatusProvider.overrideWith(
-        (_) => Stream.value(AccountState(account)),
-      ),
-      customerOrdersProvider.overrideWith(
-        () => FakeOrders(orders, fail: ordersFail),
-      ),
-    ],
-  );
+  final overrides = [
+    sharedPreferencesProvider.overrideWithValue(sp),
+    isOfflineProvider.overrideWith((_) => Stream.value(false)),
+    sessionProvider.overrideWith(() => FakeSessionController(session)),
+    accountStatusProvider.overrideWith(
+      (_) => Stream.value(AccountState(account, customer: customer)),
+    ),
+    customerOrdersProvider.overrideWith(
+      () => FakeOrders(orders, fail: ordersFail),
+    ),
+    if (orderDetail != null)
+      orderDetailProvider.overrideWith((ref, id) => orderDetail(id)),
+    notificationsProvider.overrideWith((_) => Stream.value(notifications)),
+  ];
+  final container = ProviderContainer(overrides: overrides);
   addTearDown(container.dispose);
   return container;
 }

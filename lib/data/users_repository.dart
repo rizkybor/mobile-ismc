@@ -55,6 +55,44 @@ class UsersRepository {
     return snap.docs.first.data();
   }
 
+  /// `users where email == <email> limit 1` → (id, data) atau `null`.
+  Future<(String, Map<String, Object?>)?> findByEmail(String email) async {
+    final snap = await _users.where('email', isEqualTo: email).limit(1).get();
+    if (snap.docs.isEmpty) return null;
+    return (snap.docs.first.id, snap.docs.first.data());
+  }
+
+  /// Akun Google baru (web `loginWithGoogle`): dokumen dengan ID otomatis,
+  /// `createdBy: "Google"`. Rules: `userId == uid`, `role == "customer"`.
+  Future<String> createGoogleUser({
+    required String uid,
+    required String name,
+    required String username,
+    required String email,
+    required String photoUrl,
+  }) async {
+    final ref = await _users.add({
+      'userId': uid,
+      'name': name,
+      'username': username,
+      'email': email,
+      'photoURL': photoUrl,
+      'role': 'customer',
+      'isActive': true,
+      'createdAt': DateTime.now().toUtc().toIso8601String(),
+      'createdBy': 'Google',
+    });
+    return ref.id;
+  }
+
+  /// Akun Google lama: samakan `userId` dengan uid Firebase Auth
+  /// (rules mengizinkan hanya `userId` & `googleId` bila email cocok).
+  Future<void> alignUserId(
+    String docId, {
+    required String uid,
+    required String googleId,
+  }) => _users.doc(docId).update({'userId': uid, 'googleId': googleId});
+
   /// Validasi login seperti web: ada dokumen, role customer, tidak nonaktif.
   Future<AppUser> loadCustomer(String uid) async {
     final data = await findByUid(uid);
@@ -66,6 +104,40 @@ class UsersRepository {
       throw const AuthFailure(AuthErrorKind.accountDisabled);
     }
     return AppUser.fromMap(uid, data);
+  }
+
+  /// Foto profil (rules: customer hanya boleh mengubah
+  /// `photoURL, updatedAt, updatedBy`).
+  Future<void> updatePhoto({
+    required String username,
+    required String photoDataUrl,
+    required String updatedBy,
+  }) {
+    return _users.doc(username).update({
+      'photoURL': photoDataUrl,
+      'updatedAt': DateTime.now().toUtc().toIso8601String(),
+      'updatedBy': updatedBy,
+    });
+  }
+
+  /// Tandai permintaan hapus akun (PRD §12 butir 2a). **Butuh perubahan
+  /// rules di repo CSMS**; bila ditolak (`permission-denied`) dikembalikan
+  /// `false` dan proses hapus tetap dilanjutkan.
+  Future<bool> requestDeletion({
+    required String username,
+    required String updatedBy,
+  }) async {
+    try {
+      await _users.doc(username).update({
+        'deletionRequestedAt': DateTime.now().toUtc().toIso8601String(),
+        'updatedAt': DateTime.now().toUtc().toIso8601String(),
+        'updatedBy': updatedBy,
+      });
+      return true;
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') return false;
+      rethrow;
+    }
   }
 
   /// `roles/{uid}` dibuat bila belum ada (CSMS `ensureCustomerRole`).

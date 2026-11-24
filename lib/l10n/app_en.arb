@@ -312,5 +312,294 @@
   "trackingEventInvoicePaid": "Invoice paid",
   "trackingEventInvoiceUnpaid": "Invoice paid status reverted",
   "trackingEventDeliveryOrderIssued": "Delivery Order issued",
-  "trackingEventReverted": "Process reverted for revision"
+  "trackingEventReverted": "Process reverted for revision",
+  "trackingSearchHint": "Search order no., vessel, status, product",
+  "trackingFilterActive": "Active",
+  "trackingFilterDone": "Completed",
+  "trackingEmptyTitle": "No orders yet",
+  "trackingNoResultsTitle": "No results",
+  "trackingNoResultsBody": "Try another keyword or filter.",
+  "trackingCount": "{n} orders",
+  "@trackingCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "orderNotFoundTitle": "Order not found",
+  "orderNotFoundBody": "This order does not exist or does not belong to your account.",
+  "detailStatus": "Status",
+  "detailCreated": "Created",
+  "detailVessel": "Vessel",
+  "detailProgressTitle": "7-stage progress",
+  "detailProductsTitle": "Equipment",
+  "detailProductBrand": "Brand",
+  "detailProductType": "Type",
+  "detailProductSn": "S/N",
+  "detailHistoryTitle": "History",
+  "detailShowAll": "Show all",
+  "detailShowLess": "Show less",
+  "detailHistoryApprox": "History compiled from available data.",
+  "detailHistoryEmpty": "No history yet.",
+  "detailDocumentsTitle": "Documents",
+  "detailShare": "Share summary",
+  "shareSummary": "Order {no}\nVessel: {vessel}\nCurrent stage: {stage}\n— ISM Customer",
+  "@shareSummary": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      },
+      "vessel": {
+        "type": "String"
+      },
+      "stage": {
+        "type": "String"
+      }
+    }
+  },
+  "stepDoneAt": "Done · {date}",
+  "@stepDoneAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "stepDone": "Done",
+  "stepCurrent": "In progress",
+  "stepPending": "On hold",
+  "stepRejected": "Rejected",
+  "stepWaiting": "Waiting",
+  "historyBy": "by {by}",
+  "@historyBy": {
+    "placeholders": {
+      "by": {
+        "type": "String"
+      }
+    }
+  },
+  "docQuotation": "Quotation",
+  "docInvoice": "Invoice",
+  "docCertificateGas": "Gas Meter Calibration Certificate",
+  "docCertificateUti": "UTI Meter Calibration Certificate",
+  "docCertificateKan": "KAN Calibration Certificate",
+  "docLocked": "Available after payment is confirmed",
+  "docsEmpty": "No documents for this order yet.",
+  "docsPaymentNote": "Invoice & certificates can be downloaded after the invoice is issued and paid.",
+  "docsTempoNote": "Invoice on credit terms: documents are available as agreed with ISM.",
+  "docDownloading": "Downloading document…",
+  "docProgress": "{done}/{total} parts",
+  "@docProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "docShare": "Share / Save",
+  "docIncompleteTitle": "Incomplete document",
+  "docIncompleteBody": "Part of the document could not be read. Try again shortly.",
+  "docErrorBody": "Document could not be loaded. Check your connection and try again.",
+  "docLegacyTitle": "Legacy document",
+  "docLegacyBody": "This document is stored in the old format. Open it via the ISM web portal.",
+  "docOpenPortal": "Open web portal",
+  "notifUnreadCount": "{n} unread",
+  "@notifUnreadCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "notifMarkAllRead": "Mark all read",
+  "notifEmptyTitle": "No notifications yet",
+  "notifEmptyBody": "Updates on your orders from the ISM team will appear here.",
+  "notifOrderReceived": "Order received",
+  "notifOrderReceivedBody": "Order {ordersNo} has been received and is being reviewed by our team.",
+  "@notifOrderReceivedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifRecommendationQuotation": "Work recommendation & quotation",
+  "notifRecommendationQuotationBody": "The work recommendation & quotation for order {ordersNo} await your approval.",
+  "@notifRecommendationQuotationBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifApprovalReceived": "Approval received",
+  "notifApprovalReceivedBody": "Order {ordersNo} proceeds to service & calibration.",
+  "@notifApprovalReceivedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifOrderOnHold": "Order on hold",
+  "notifOrderOnHoldBody": "Order {ordersNo} is temporarily on hold. Our team will contact you.",
+  "@notifOrderOnHoldBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifRecommendationRejected": "Recommendation rejected",
+  "notifRecommendationRejectedBody": "The work recommendation for order {ordersNo} was rejected.",
+  "@notifRecommendationRejectedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifPoReceived": "PO received",
+  "notifPoReceivedBody": "The PO for order {ordersNo} has been received; the certificate will be processed shortly.",
+  "@notifPoReceivedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifWaitingPo": "Waiting for Purchase Order",
+  "notifWaitingPoBody": "Service for order {ordersNo} is done. Please send the PO to issue the certificate.",
+  "@notifWaitingPoBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifServiceDone": "Service completed",
+  "notifServiceDoneBody": "Order {ordersNo} enters the certificate issuance stage.",
+  "@notifServiceDoneBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDocumentRejected": "Document rejected",
+  "notifDocumentRejectedBody": "A document for order {ordersNo} was rejected. Contact us for details.",
+  "@notifDocumentRejectedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifCertificateReady": "Certificate ready",
+  "notifCertificateReadyBody": "PO {poNo} for order {ordersNo} is recorded; the certificate is ready to issue.",
+  "@notifCertificateReadyBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      },
+      "poNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifDeliveryOrderIssued": "Delivery Order issued",
+  "notifDeliveryOrderIssuedBody": "Order {ordersNo} was shipped with DO No. {doNo}.",
+  "@notifDeliveryOrderIssuedBody": {
+    "placeholders": {
+      "ordersNo": {
+        "type": "String"
+      },
+      "doNo": {
+        "type": "String"
+      }
+    }
+  },
+  "notifAccountVerified": "Account verified",
+  "notifAccountVerifiedBody": "Your account has been verified. You can now see your orders.",
+  "notifAccountActivated": "Account activated",
+  "notifAccountActivatedBody": "Your account is active again.",
+  "notifAccountDeactivated": "Account deactivated",
+  "notifAccountDeactivatedBody": "Your account has been deactivated. Contact the admin for details.",
+  "profileAccountSection": "Account",
+  "profileCompanySection": "Company details",
+  "profileSettingsSection": "Settings",
+  "profileAboutSection": "About",
+  "profileChangePhoto": "Change photo",
+  "profilePhotoCamera": "Take a photo",
+  "profilePhotoGallery": "Choose from gallery",
+  "profilePhotoSaved": "Profile photo updated.",
+  "profilePhotoTooLarge": "Photo must be 5 MB or smaller.",
+  "profilePhotoFailed": "Photo could not be saved. Try again.",
+  "profileUsername": "Username",
+  "profileEmail": "Email",
+  "profileRole": "Customer",
+  "profileCompanyName": "Name",
+  "profileCompanyPhone": "Mobile",
+  "profileCompanyTelp": "Office phone",
+  "profileCompanyAddress": "Address",
+  "profileCompanyNote": "To change company details, contact the ISM admin.",
+  "profileCompanyEmpty": "No company details yet.",
+  "profileChangePassword": "Change password",
+  "profileLanguage": "Language",
+  "profileDeleteAccount": "Delete account",
+  "profilePrivacy": "Privacy policy",
+  "profileContact": "Contact ISM",
+  "profileVersion": "App version",
+  "profileVersionValue": "{version} ({build})",
+  "@profileVersionValue": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "build": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordCurrent": "Current password",
+  "passwordNew": "New password",
+  "passwordNewRepeat": "Repeat new password",
+  "passwordChangeSubtitle": "Same requirements as when registering.",
+  "passwordChangeButton": "Save password",
+  "passwordChanged": "Password changed successfully.",
+  "deleteTitle": "Delete account",
+  "deleteSubtitle": "This action cannot be undone.",
+  "deleteExplain1": "Your login account for the app and web portal will be deleted.",
+  "deleteExplain2": "Order, document, and company data remain stored by Indo Safety Marine as business records.",
+  "deleteExplain3": "To remove company data, contact ISM.",
+  "deleteTypeLabel": "Type HAPUS to confirm",
+  "deleteTypeWord": "HAPUS",
+  "deleteTypeMismatch": "Type HAPUS (upper case).",
+  "deleteButton": "Delete my account",
+  "deleteDone": "Your account has been deleted.",
+  "deleteMarkFailedNote": "Note: the deletion request marker could not be saved (requires an ISM system update). The login account was still deleted.",
+  "languageSheetTitle": "Choose language",
+  "onbStep1Title": "Home",
+  "onbStep1Body": "Order totals and your 5 latest orders. Pull down to refresh.",
+  "onbStep2Title": "Track Orders",
+  "onbStep2Body": "All your orders and where each one is across 7 stages, from order received to Delivery Order.",
+  "onbStep3Title": "Official documents",
+  "onbStep3Body": "In an order's detail: the Quotation is always available. Invoice and Certificates unlock once the invoice is Paid or on credit terms.",
+  "onbStep4Title": "Notifications",
+  "onbStep4Body": "Updates whenever an order moves. Tap one to open the order directly.",
+  "onbStep5Title": "Profile & language",
+  "onbStep5Body": "Account and company details, change your photo or password, and choose Bahasa Indonesia or English.",
+  "onbSkip": "Skip",
+  "onbNext": "Next",
+  "onbBack": "Back",
+  "onbDone": "Done",
+  "profileGuide": "App guide",
+  "loginGoogle": "Sign in with Google",
+  "authOr": "or",
+  "authErrorGoogleUnverified": "This Google account's email is not verified. Use another account or register with email.",
+  "authErrorGoogleNotConfigured": "Sign in with Google is not configured in this build."
 }

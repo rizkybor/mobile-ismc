@@ -8,9 +8,12 @@ import '../features/activation/screens/activation_screen.dart';
 import '../features/auth/screens/auth_screens.dart';
 import '../features/auth/session_controller.dart';
 import '../features/debug/debug_screen.dart';
+import '../features/documents/document_ui.dart';
 import '../features/documents/screens/pdf_viewer_screen.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/notifications/screens/notifications_screen.dart';
+import '../features/profile/screens/change_password_screen.dart';
+import '../features/profile/screens/delete_account_screen.dart';
 import '../features/profile/screens/profile_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/tracking/screens/order_detail_screen.dart';
@@ -106,6 +109,16 @@ final routerProvider = Provider<GoRouter>((ref) {
             OrderDetailScreen(orderId: state.pathParameters['orderId']!),
       ),
       GoRoute(
+        path: Routes.changePassword,
+        parentNavigatorKey: _rootKey,
+        builder: (_, _) => const ChangePasswordScreen(),
+      ),
+      GoRoute(
+        path: Routes.deleteAccount,
+        parentNavigatorKey: _rootKey,
+        builder: (_, _) => const DeleteAccountScreen(),
+      ),
+      GoRoute(
         path: Routes.activation,
         parentNavigatorKey: _rootKey,
         builder: (_, _) => const ActivationScreen(),
@@ -113,7 +126,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.pdfViewer,
         parentNavigatorKey: _rootKey,
-        builder: (_, _) => const PdfViewerScreen(),
+        builder: (_, state) =>
+            PdfViewerScreen(request: state.extra! as PdfViewRequest),
       ),
       if (kDebugMode)
         GoRoute(

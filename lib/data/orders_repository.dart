@@ -33,10 +33,16 @@ class OrdersRepository {
     return orders;
   }
 
+  /// `null` bila tidak ada **atau** ditolak rules (bukan milik customer).
   Future<Order?> fetchOrder(String id) async {
-    final doc = await _db.collection('orders').doc(id).get();
-    final data = doc.data();
-    return data == null ? null : Order.fromMap(doc.id, data);
+    try {
+      final doc = await _db.collection('orders').doc(id).get();
+      final data = doc.data();
+      return data == null ? null : Order.fromMap(doc.id, data);
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') return null;
+      rethrow;
+    }
   }
 
   Future<void> _saveCache(String email, List<Order> orders) async {

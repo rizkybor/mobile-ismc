@@ -1,0 +1,48 @@
+# (a) daftar → verifikasi (aktifkan lewat Emulator REST) → aktivasi
+# Jalankan: maestro test .maestro/01-register-activation.yaml -e STAMP=$(date +%s)
+appId: id.co.indosafetymarine.customer
+env:
+  LANG: id
+  STAMP: "0"
+---
+- launchApp:
+    clearState: true
+- assertVisible: "ISM Customer"
+- tapOn: "${LANG == 'en' ? 'Create account' : 'Daftar akun'}"
+- tapOn: "${LANG == 'en' ? 'Full name' : 'Nama lengkap'}"
+- inputText: "Maestro Test"
+- tapOn: "Username"
+- inputText: "maestro.${STAMP}"
+- tapOn: "Email"
+- inputText: "maestro.${STAMP}@example.com"
+- tapOn: "Password"
+- inputText: "Maestro#2026!"
+- tapOn: "${LANG == 'en' ? 'Repeat password' : 'Ulangi password'}"
+- inputText: "Maestro#2026!"
+- hideKeyboard
+- tapOn: "${LANG == 'en' ? 'Create account' : 'Daftar'}"
+- assertVisible: "${LANG == 'en' ? 'Check your email' : 'Cek email Anda'}"
+# Verifikasi email dilakukan di luar aplikasi (Emulator REST, lihat
+# integration_test/activation_emulator_test.dart markEmailVerified).
+- runScript: scripts/verify-email.js
+- tapOn: "${LANG == 'en' ? 'Go to sign in' : 'Ke halaman masuk'}"
+- tapOn:
+    id: "login-email"
+- inputText: "maestro.${STAMP}@example.com"
+- tapOn:
+    id: "login-password"
+- inputText: "Maestro#2026!"
+- hideKeyboard
+- tapOn:
+    id: "login-submit"
+- assertVisible: "${LANG == 'en' ? 'Complete your company details' : 'Lengkapi data perusahaan'}"
+- tapOn: "${LANG == 'en' ? 'Complete now' : 'Lengkapi sekarang'}"
+- tapOn: "${LANG == 'en' ? 'Company name' : 'Nama perusahaan'}"
+- inputText: "PT Maestro"
+- tapOn: "${LANG == 'en' ? 'Mobile number' : 'No. HP'}"
+- inputText: "08123456789"
+- tapOn: "${LANG == 'en' ? 'Address' : 'Alamat'}"
+- inputText: "Jl. Uji 1"
+- hideKeyboard
+- tapOn: "${LANG == 'en' ? 'Send activation request' : 'Kirim permintaan aktivasi'}"
+- assertVisible: "${LANG == 'en' ? 'Waiting for admin verification' : 'Menunggu verifikasi admin'}"

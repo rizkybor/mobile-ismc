@@ -8,6 +8,7 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../domain/order_models.dart';
 import '../../../domain/order_status.dart';
 import '../../../shared/widgets/widgets.dart';
+import '../../onboarding/onboarding_targets.dart';
 import '../orders_controller.dart';
 import 'order_card.dart';
 import 'stat_cards.dart';
@@ -56,7 +57,10 @@ class _HomeData extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.md),
         ],
-        StatCards(stats: OrderStats.of(list)),
+        KeyedSubtree(
+          key: OnboardingTargets.homeStats,
+          child: StatCards(stats: OrderStats.of(list)),
+        ),
         const SizedBox(height: AppSpacing.xl),
         SectionTitle(
           title: l10n.homeRecentOrders,

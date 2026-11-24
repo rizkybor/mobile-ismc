@@ -19,6 +19,8 @@ String authErrorText(AppLocalizations l10n, Object error) {
     AuthErrorKind.notCustomer => l10n.authErrorNotCustomer,
     AuthErrorKind.accountDisabled => l10n.authErrorAccountDisabled,
     AuthErrorKind.usernameTaken => l10n.authErrorUsernameTaken,
+    AuthErrorKind.googleUnverified => l10n.authErrorGoogleUnverified,
+    AuthErrorKind.googleNotConfigured => l10n.authErrorGoogleNotConfigured,
     AuthErrorKind.unknown => l10n.authErrorGeneric,
   };
 }

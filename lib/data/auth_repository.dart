@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/app_user.dart';
 import '../domain/auth_rules.dart';
 import 'firebase_providers.dart';
+import 'google_credential_source.dart';
 import 'users_repository.dart';
 
 /// Hasil masuk: sudah tervalidasi, atau email belum diverifikasi.
@@ -86,6 +87,75 @@ class AuthRepository {
     return validateCurrentUser(cred.user!);
   }
 
+  /// Masuk dengan Google (web `loginWithGoogle`): tukar ID token →
+  /// Firebase; email wajib terverifikasi; `users where email ==` → buat
+  /// dokumen `createdBy: "Google"` bila belum ada, atau validasi role/aktif
+  /// dan samakan `userId`. `null` bila pengguna membatalkan.
+  Future<SignInResult?> signInWithGoogle(GoogleCredentialSource source) async {
+    final g = await source.obtain();
+    if (g == null) return null;
+    final UserCredential cred;
+    try {
+      cred = await _auth.signInWithCredential(
+        GoogleAuthProvider.credential(idToken: g.idToken),
+      );
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(
+        AuthErrorMapper.fromCode(e.code, message: e.message),
+        code: e.code,
+      );
+    }
+    final user = cred.user!;
+    try {
+      if (!user.emailVerified) {
+        throw const AuthFailure(AuthErrorKind.googleUnverified);
+      }
+      final uid = user.uid;
+      final email = user.email ?? g.email;
+      final found = await _users.findByEmail(email);
+      final AppUser appUser;
+      if (found == null) {
+        final username = AuthRules.usernameFromGoogle(
+          displayName: g.displayName,
+          email: email,
+        );
+        await _users.createGoogleUser(
+          uid: uid,
+          name: g.displayName.isEmpty ? username : g.displayName,
+          username: username,
+          email: email,
+          photoUrl: g.photoUrl,
+        );
+        appUser = AppUser(
+          uid: uid,
+          username: username,
+          name: g.displayName.isEmpty ? username : g.displayName,
+          email: email,
+          role: 'customer',
+          photoUrl: g.photoUrl,
+        );
+      } else {
+        final (docId, data) = found;
+        if (!AuthRules.isCustomerRole(data['role'])) {
+          throw const AuthFailure(AuthErrorKind.notCustomer);
+        }
+        if (data['isActive'] == false) {
+          throw const AuthFailure(AuthErrorKind.accountDisabled);
+        }
+        if (data['userId'] != uid) {
+          await _users.alignUserId(docId, uid: uid, googleId: g.googleId);
+        }
+        appUser = AppUser.fromMap(uid, data);
+      }
+      await _users.ensureCustomerRole(uid, email).catchError((_) {});
+      return SignInReady(appUser);
+    } on AuthFailure {
+      await _auth.signOut().catchError((_) {});
+      await source.signOut().catchError((_) {});
+      rethrow;
+    }
+  }
+
   /// Dipakai saat masuk dan saat aplikasi dibuka dengan sesi tersimpan.
   Future<SignInResult> validateCurrentUser(User user) async {
     if (!user.emailVerified) {
@@ -136,6 +206,68 @@ class AuthRepository {
   }
 
   Future<void> signOut() => _auth.signOut();
+
+  /// Re-autentikasi dengan password saat ini (ganti password, hapus akun).
+  Future<User> reauthenticate(String password) async {
+    final user = _auth.currentUser;
+    if (user == null || user.email == null) {
+      throw const AuthFailure(AuthErrorKind.requiresRecentLogin);
+    }
+    try {
+      await user.reauthenticateWithCredential(
+        EmailAuthProvider.credential(email: user.email!, password: password),
+      );
+      return user;
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(
+        AuthErrorMapper.fromCode(e.code, message: e.message),
+        code: e.code,
+      );
+    }
+  }
+
+  /// F-07.3: password lama → `updatePassword` (syarat sama dengan daftar).
+  Future<void> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    if (!AuthRules.isPasswordValid(newPassword)) {
+      throw const AuthFailure(AuthErrorKind.passwordRequirements);
+    }
+    final user = await reauthenticate(currentPassword);
+    try {
+      await user.updatePassword(newPassword);
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(
+        AuthErrorMapper.fromCode(e.code, message: e.message),
+        code: e.code,
+      );
+    }
+  }
+
+  /// F-07.4: re-autentikasi → tandai permintaan hapus (bila rules
+  /// mengizinkan) → `user.delete()`. Mengembalikan `true` bila penanda
+  /// `deletionRequestedAt` berhasil ditulis.
+  Future<bool> deleteAccount({
+    required String password,
+    required String username,
+    required String name,
+  }) async {
+    final user = await reauthenticate(password);
+    final marked = await _users.requestDeletion(
+      username: username,
+      updatedBy: name,
+    );
+    try {
+      await user.delete();
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(
+        AuthErrorMapper.fromCode(e.code, message: e.message),
+        code: e.code,
+      );
+    }
+    return marked;
+  }
 }
 
 final authRepositoryProvider = Provider<AuthRepository>(

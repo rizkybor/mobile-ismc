@@ -1,0 +1,15 @@
+appId: id.co.indosafetymarine.customer
+env:
+  LANG: id
+---
+- tapOn:
+    id: "welcome-login"
+- tapOn:
+    id: "login-email"
+- inputText: "ops@samudra.example.com"
+- tapOn:
+    id: "login-password"
+- inputText: "Cust#2026!"
+- hideKeyboard
+- tapOn:
+    id: "login-submit"

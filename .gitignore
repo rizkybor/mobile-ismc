@@ -62,3 +62,5 @@ credentials.json
 # Dokumen internal (BRD, PRD, flowchart, penawaran, prompt) — hanya disimpan lokal
 docs/
 prompts/
+coverage/
+tool/emulator/firestore.rules

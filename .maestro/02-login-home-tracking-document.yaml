@@ -1,0 +1,18 @@
+# (b) login seed → Beranda → Lacak → detail 006 → buka Penawaran
+appId: id.co.indosafetymarine.customer
+env:
+  LANG: id
+---
+- launchApp:
+    clearState: true
+- runFlow: common/login-seed.yaml
+- assertVisible: "${LANG == 'en' ? 'Total orders' : 'Total order'}"
+- runFlow: common/skip-guide.yaml
+- tapOn: "${LANG == 'en' ? 'Track' : 'Lacak'}"
+- assertVisible: "${LANG == 'en' ? 'Track Orders' : 'Lacak Order'}"
+- tapOn: "OR/20261121/006"
+- assertVisible: "${LANG == 'en' ? '7-stage progress' : 'Progres 7 tahap'}"
+- scrollUntilVisible:
+    element: "${LANG == 'en' ? 'Quotation' : 'Penawaran (Quotation)'}"
+- tapOn: "${LANG == 'en' ? 'Quotation' : 'Penawaran (Quotation)'}"
+- assertVisible: "${LANG == 'en' ? 'Share / Save' : 'Bagikan / Simpan'}"

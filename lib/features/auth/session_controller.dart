@@ -6,9 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/auth_repository.dart';
+import '../../data/documents_repository.dart';
 import '../../data/firebase_providers.dart';
 import '../../domain/app_user.dart';
 import '../../domain/auth_rules.dart';
+import '../notifications/push_service.dart';
 
 /// Status sesi untuk guard navigasi (PRD §3).
 enum SessionStatus { loading, signedOut, needsVerification, ready }
@@ -82,12 +84,31 @@ class SessionController extends Notifier<Session> {
       SignInReady(:final user) => Session.ready(user),
       SignInNeedsVerification(:final email) => Session.needsVerification(email),
     };
+    if (result is SignInReady) {
+      // Fase 2: daftarkan token push (tidak berbuat apa-apa bila PUSH_ENABLED=false).
+      unawaited(ref.read(pushServiceProvider).register(result.user));
+    }
   }
 
   Future<void> signIn(String email, String password) async {
     _busy = true;
     try {
       _apply(await ref.read(authRepositoryProvider).signIn(email, password));
+    } finally {
+      _busy = false;
+    }
+  }
+
+  /// Masuk dengan Google; `false` bila dibatalkan pengguna.
+  Future<bool> signInWithGoogle() async {
+    _busy = true;
+    try {
+      final r = await ref
+          .read(authRepositoryProvider)
+          .signInWithGoogle(ref.read(googleCredentialSourceProvider));
+      if (r == null) return false;
+      _apply(r);
+      return true;
     } finally {
       _busy = false;
     }
@@ -140,6 +161,11 @@ class SessionController extends Notifier<Session> {
   Future<void> signOut() async {
     _busy = true;
     try {
+      await ref.read(pushServiceProvider).unregister();
+      await ref
+          .read(googleCredentialSourceProvider)
+          .signOut()
+          .catchError((_) {});
       await ref.read(authRepositoryProvider).signOut();
       // Cache lokal milik sesi (ringkasan order dsb.) dibersihkan di sini;
       // pilihan bahasa `app.language` sengaja dipertahankan.
@@ -147,7 +173,46 @@ class SessionController extends Notifier<Session> {
       for (final k in prefs.getKeys().where((k) => k.startsWith('cache.'))) {
         await prefs.remove(k);
       }
+      await ref
+          .read(documentsRepositoryProvider)
+          .clearCache()
+          .catchError((_) {});
       state = const Session.signedOut();
+    } finally {
+      _busy = false;
+    }
+  }
+
+  /// Perbarui foto di sesi setelah tersimpan di Firestore.
+  void setPhoto(String photoUrl) {
+    final u = state.user;
+    if (u != null) state = Session.ready(u.copyWith(photoUrl: photoUrl));
+  }
+
+  /// Hapus akun lalu bersihkan sesi & cache (F-07.4).
+  Future<bool> deleteAccount(String password) async {
+    final u = state.user;
+    if (u == null) return false;
+    _busy = true;
+    try {
+      final marked = await ref
+          .read(authRepositoryProvider)
+          .deleteAccount(
+            password: password,
+            username: u.username,
+            name: u.name,
+          );
+      await ref.read(pushServiceProvider).unregister();
+      final prefs = await SharedPreferences.getInstance();
+      for (final k in prefs.getKeys().where((k) => k.startsWith('cache.'))) {
+        await prefs.remove(k);
+      }
+      await ref
+          .read(documentsRepositoryProvider)
+          .clearCache()
+          .catchError((_) {});
+      state = const Session.signedOut();
+      return marked;
     } finally {
       _busy = false;
     }

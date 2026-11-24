@@ -9,6 +9,9 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../shared/widgets/widgets.dart';
 import '../../debug/language_toggle.dart';
+import '../auth_error_text.dart';
+import '../session_controller.dart';
+import '../widgets/google_sign_in_button.dart';
 
 /// Layar Welcome bermerek dengan pilihan bahasa (F-01.6).
 class WelcomeScreen extends ConsumerWidget {
@@ -119,6 +122,7 @@ class WelcomeScreen extends ConsumerWidget {
                           const Spacer(),
                           const SizedBox(height: AppSpacing.lg),
                           AppButton(
+                            semanticId: 'welcome-login',
                             label: l10n.welcomeLogin,
                             onPressed: () => context.push(Routes.login),
                           ),
@@ -127,6 +131,23 @@ class WelcomeScreen extends ConsumerWidget {
                             label: l10n.welcomeRegister,
                             variant: AppButtonVariant.outline,
                             onPressed: () => context.push(Routes.register),
+                          ),
+                          const SizedBox(height: AppSpacing.md),
+                          GoogleSignInButton(
+                            withDivider: false,
+                            onPressed: () => ref
+                                .read(sessionProvider.notifier)
+                                .signInWithGoogle()
+                                .catchError((Object e) {
+                                  if (context.mounted) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(authErrorText(l10n, e)),
+                                      ),
+                                    );
+                                  }
+                                  return false;
+                                }),
                           ),
                         ],
                       ),

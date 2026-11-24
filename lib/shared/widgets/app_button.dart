@@ -14,6 +14,7 @@ class AppButton extends StatelessWidget {
     this.variant = AppButtonVariant.primary,
     this.loading = false,
     this.icon,
+    this.semanticId,
   });
 
   final String label;
@@ -21,6 +22,9 @@ class AppButton extends StatelessWidget {
   final AppButtonVariant variant;
   final bool loading;
   final IconData? icon;
+
+  /// Accessibility identifier (Maestro E2E).
+  final String? semanticId;
 
   @override
   Widget build(BuildContext context) {

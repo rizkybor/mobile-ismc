@@ -8,5 +8,7 @@
   "USE_EMULATOR": true,
   "EMULATOR_HOST": "",
   "PUSH_ENABLED": false,
-  "PRIVACY_POLICY_URL": "https://indosafetymarine.co.id/privacy"
+  "PRIVACY_POLICY_URL": "https://indosafetymarine.co.id/privacy",
+  "GOOGLE_CLIENT_ID_IOS": "",
+  "GOOGLE_SERVER_CLIENT_ID": ""
 }
