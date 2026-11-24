@@ -63,3 +63,4 @@ credentials.json
 docs/
 prompts/
 coverage/
+tool/emulator/firestore.rules

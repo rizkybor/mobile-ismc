@@ -21,6 +21,17 @@ abstract final class Env {
   static const _emulatorHostOverride = String.fromEnvironment('EMULATOR_HOST');
   static const pushEnabled = bool.fromEnvironment('PUSH_ENABLED');
   static const privacyPolicyUrl = String.fromEnvironment('PRIVACY_POLICY_URL');
+  static const googleClientIdIos = String.fromEnvironment(
+    'GOOGLE_CLIENT_ID_IOS',
+  );
+  static const googleServerClientId = String.fromEnvironment(
+    'GOOGLE_SERVER_CLIENT_ID',
+  );
+
+  /// Google Sign-In butuh OAuth client dari Firebase Console (iOS client id
+  /// & web/server client id). Tanpa ini, mode emulator memakai kredensial
+  /// palsu (lihat FakeGoogleCredentialSource).
+  static bool get isGoogleConfigured => googleServerClientId.isNotEmpty;
 
   static const authEmulatorPort = 9099;
   static const firestoreEmulatorPort = 8086;

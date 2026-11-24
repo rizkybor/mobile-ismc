@@ -9,6 +9,7 @@ import '../../../domain/auth_rules.dart';
 import '../../../shared/widgets/widgets.dart';
 import '../auth_error_text.dart';
 import '../session_controller.dart';
+import '../widgets/google_sign_in_button.dart';
 import 'auth_form_shell.dart';
 
 /// F-01.2 Masuk. Sukses → guard router mengarahkan ke Beranda; email belum
@@ -25,6 +26,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _loading = false;
+  bool _googleLoading = false;
   Object? _error;
 
   @override
@@ -63,6 +65,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       if (mounted) setState(() => _error = e);
     } finally {
       if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  Future<void> _google() async {
+    if (_loading || _googleLoading) return;
+    setState(() {
+      _googleLoading = true;
+      _error = null;
+    });
+    try {
+      await ref.read(sessionProvider.notifier).signInWithGoogle();
+    } on Object catch (e) {
+      if (mounted) setState(() => _error = e);
+    } finally {
+      if (mounted) setState(() => _googleLoading = false);
     }
   }
 
@@ -135,6 +152,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           ),
         ),
         const SizedBox(height: AppSpacing.xl),
+        GoogleSignInButton(onPressed: _google, loading: _googleLoading),
+        const SizedBox(height: AppSpacing.lg),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

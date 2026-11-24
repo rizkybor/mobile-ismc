@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/app_user.dart';
 import '../domain/auth_rules.dart';
 import 'firebase_providers.dart';
+import 'google_credential_source.dart';
 import 'users_repository.dart';
 
 /// Hasil masuk: sudah tervalidasi, atau email belum diverifikasi.
@@ -84,6 +85,75 @@ class AuthRepository {
       );
     }
     return validateCurrentUser(cred.user!);
+  }
+
+  /// Masuk dengan Google (web `loginWithGoogle`): tukar ID token →
+  /// Firebase; email wajib terverifikasi; `users where email ==` → buat
+  /// dokumen `createdBy: "Google"` bila belum ada, atau validasi role/aktif
+  /// dan samakan `userId`. `null` bila pengguna membatalkan.
+  Future<SignInResult?> signInWithGoogle(GoogleCredentialSource source) async {
+    final g = await source.obtain();
+    if (g == null) return null;
+    final UserCredential cred;
+    try {
+      cred = await _auth.signInWithCredential(
+        GoogleAuthProvider.credential(idToken: g.idToken),
+      );
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(
+        AuthErrorMapper.fromCode(e.code, message: e.message),
+        code: e.code,
+      );
+    }
+    final user = cred.user!;
+    try {
+      if (!user.emailVerified) {
+        throw const AuthFailure(AuthErrorKind.googleUnverified);
+      }
+      final uid = user.uid;
+      final email = user.email ?? g.email;
+      final found = await _users.findByEmail(email);
+      final AppUser appUser;
+      if (found == null) {
+        final username = AuthRules.usernameFromGoogle(
+          displayName: g.displayName,
+          email: email,
+        );
+        await _users.createGoogleUser(
+          uid: uid,
+          name: g.displayName.isEmpty ? username : g.displayName,
+          username: username,
+          email: email,
+          photoUrl: g.photoUrl,
+        );
+        appUser = AppUser(
+          uid: uid,
+          username: username,
+          name: g.displayName.isEmpty ? username : g.displayName,
+          email: email,
+          role: 'customer',
+          photoUrl: g.photoUrl,
+        );
+      } else {
+        final (docId, data) = found;
+        if (!AuthRules.isCustomerRole(data['role'])) {
+          throw const AuthFailure(AuthErrorKind.notCustomer);
+        }
+        if (data['isActive'] == false) {
+          throw const AuthFailure(AuthErrorKind.accountDisabled);
+        }
+        if (data['userId'] != uid) {
+          await _users.alignUserId(docId, uid: uid, googleId: g.googleId);
+        }
+        appUser = AppUser.fromMap(uid, data);
+      }
+      await _users.ensureCustomerRole(uid, email).catchError((_) {});
+      return SignInReady(appUser);
+    } on AuthFailure {
+      await _auth.signOut().catchError((_) {});
+      await source.signOut().catchError((_) {});
+      rethrow;
+    }
   }
 
   /// Dipakai saat masuk dan saat aplikasi dibuka dengan sesi tersimpan.

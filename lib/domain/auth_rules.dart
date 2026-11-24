@@ -46,6 +46,18 @@ abstract final class AuthRules {
 
   static bool validateEmail(String email) => _email.hasMatch(email.trim());
 
+  /// Username untuk akun Google baru: nama depan (web: `given_name`),
+  /// fallback bagian lokal email; dibersihkan agar lolos aturan username.
+  static String usernameFromGoogle({
+    required String displayName,
+    required String email,
+  }) {
+    final first = displayName.trim().split(RegExp(r'\s+')).first;
+    final base = first.isNotEmpty ? first : email.split('@').first;
+    final clean = base.replaceAll(RegExp(r'[^A-Za-z0-9._-]'), '');
+    return clean.isEmpty ? 'customer' : clean;
+  }
+
   /// Role customer ditulis `customer` atau `Customer` di data lama.
   static bool isCustomerRole(Object? role) =>
       role is String && role.trim().toLowerCase() == 'customer';
@@ -66,6 +78,8 @@ enum AuthErrorKind {
   notCustomer,
   accountDisabled,
   usernameTaken,
+  googleUnverified,
+  googleNotConfigured,
   unknown,
 }
 

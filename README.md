@@ -59,6 +59,7 @@ cp env/example.json env/dev.json   # env/*.json di-ignore git, kecuali example.j
 | `USE_EMULATOR` | `true` → Auth `:9099` & Firestore `:8086` di emulator lokal |
 | `EMULATOR_HOST` | Kosong = otomatis (`10.0.2.2` emulator Android, `localhost` simulator iOS). HP fisik: isi IP komputer |
 | `PUSH_ENABLED` | Fase 2 (push notification) |
+| `GOOGLE_SERVER_CLIENT_ID`, `GOOGLE_CLIENT_ID_IOS` | Google Sign-In (lihat bagian Masuk dengan Google); kosong = kredensial palsu di emulator |
 | `PRIVACY_POLICY_URL` | Tautan kebijakan privasi di Profil |
 
 Konfigurasi dibaca lewat `--dart-define-from-file`, jadi **tidak ada** `firebase_options.dart`, `google-services.json`, atau `GoogleService-Info.plist` di repo.
@@ -113,6 +114,22 @@ flutter test
 ```
 
 Ketiganya plus `flutter build apk --debug` dijalankan GitHub Actions di setiap PR (`.github/workflows/ci.yml`).
+
+### Masuk dengan Google
+
+Tombol **Masuk dengan Google** ada di Welcome dan Masuk. Alurnya sama dengan portal web: akun Google baru → dokumen `users` otomatis (`createdBy: "Google"`), email yang sudah terdaftar → validasi role customer & aktif, `userId` disamakan.
+
+| Mode | Kredensial |
+|---|---|
+| `USE_EMULATOR=true` tanpa `GOOGLE_SERVER_CLIENT_ID` | **Palsu** (`FakeGoogleCredentialSource`, akun `google.test@example.com`) — Auth Emulator menerima ID token JSON tanpa tanda tangan, cukup untuk menguji alur |
+| Produksi / emulator dengan client id | Google Sign-In asli (`google_sign_in` 7) |
+
+Konfigurasi asli (sekali, dari Firebase Console proyek CSMS → Authentication → Sign-in method → Google):
+
+1. Aktifkan provider Google; catat **Web client ID** → `GOOGLE_SERVER_CLIENT_ID` di `env/*.json`.
+2. iOS: tambahkan app iOS bundle `id.co.indosafetymarine.customer`, ambil **iOS client ID** → `GOOGLE_CLIENT_ID_IOS`; isi `GIDClientID` dan skema URL `com.googleusercontent.apps.<id>` di `ios/Runner/Info.plist` (saat ini placeholder `REPLACE_WITH_IOS_CLIENT_ID`).
+3. Android: daftarkan **SHA-1/SHA-256** keystore debug & rilis di Firebase Console (`cd android && ./gradlew signingReport`), lalu taruh `google-services.json` di `android/app/` (di-ignore git) dan aktifkan plugin `com.google.gms.google-services` di Gradle.
+4. App Store: bila Google aktif di iOS, **Sign in with Apple wajib** (aturan 4.8) — belum diimplementasikan (Fase 2).
 
 ### Integration test (Firebase Emulator) & E2E
 

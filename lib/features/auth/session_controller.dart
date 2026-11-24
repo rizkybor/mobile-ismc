@@ -99,6 +99,21 @@ class SessionController extends Notifier<Session> {
     }
   }
 
+  /// Masuk dengan Google; `false` bila dibatalkan pengguna.
+  Future<bool> signInWithGoogle() async {
+    _busy = true;
+    try {
+      final r = await ref
+          .read(authRepositoryProvider)
+          .signInWithGoogle(ref.read(googleCredentialSourceProvider));
+      if (r == null) return false;
+      _apply(r);
+      return true;
+    } finally {
+      _busy = false;
+    }
+  }
+
   Future<void> register({
     required String name,
     required String username,
@@ -147,6 +162,10 @@ class SessionController extends Notifier<Session> {
     _busy = true;
     try {
       await ref.read(pushServiceProvider).unregister();
+      await ref
+          .read(googleCredentialSourceProvider)
+          .signOut()
+          .catchError((_) {});
       await ref.read(authRepositoryProvider).signOut();
       // Cache lokal milik sesi (ringkasan order dsb.) dibersihkan di sini;
       // pilihan bahasa `app.language` sengaja dipertahankan.

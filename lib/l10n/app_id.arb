@@ -597,5 +597,9 @@
   "onbNext": "Lanjut",
   "onbBack": "Kembali",
   "onbDone": "Selesai",
-  "profileGuide": "Panduan aplikasi"
+  "profileGuide": "Panduan aplikasi",
+  "loginGoogle": "Masuk dengan Google",
+  "authOr": "atau",
+  "authErrorGoogleUnverified": "Email akun Google ini belum terverifikasi. Gunakan akun lain atau daftar dengan email.",
+  "authErrorGoogleNotConfigured": "Masuk dengan Google belum dikonfigurasi di build ini."
 }

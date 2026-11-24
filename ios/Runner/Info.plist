@@ -47,6 +47,10 @@
 	<string>Kamera dipakai untuk mengambil foto profil Anda.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Galeri dipakai untuk memilih foto profil Anda.</string>
+	<!-- Google Sign-In: isi dari Firebase Console (OAuth client iOS). Ganti
+	     GIDClientID dan skema com.googleusercontent.apps.<id> saat tersedia. -->
+	<key>GIDClientID</key>
+	<string>REPLACE_WITH_IOS_CLIENT_ID.apps.googleusercontent.com</string>
 	<key>LSRequiresIPhoneOS</key>
 		<true/>
 		<key>UIApplicationSceneManifest</key>
