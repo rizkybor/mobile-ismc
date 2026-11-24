@@ -11,6 +11,7 @@ import '../../../domain/order_models.dart';
 import '../../../domain/order_status.dart';
 import '../../../domain/order_tracking.dart';
 import '../../../shared/widgets/widgets.dart';
+import '../../documents/widgets/documents_card.dart';
 import '../order_detail_provider.dart';
 import '../tracking_text.dart';
 import '../widgets/mini_progress.dart';
@@ -176,17 +177,7 @@ class _Detail extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: AppSpacing.lg),
-          // Dokumen (diisi Tahap 6)
-          AppCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SectionTitle(title: l10n.detailDocumentsTitle),
-                const SizedBox(height: AppSpacing.sm),
-                Text(l10n.stagePlaceholder(6), style: t.bodySmall),
-              ],
-            ),
-          ),
+          DocumentsCard(order: order),
           const SizedBox(height: AppSpacing.lg),
           OrderProducts(order: order),
           const SizedBox(height: AppSpacing.lg),

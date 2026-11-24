@@ -8,6 +8,7 @@ import '../features/activation/screens/activation_screen.dart';
 import '../features/auth/screens/auth_screens.dart';
 import '../features/auth/session_controller.dart';
 import '../features/debug/debug_screen.dart';
+import '../features/documents/document_ui.dart';
 import '../features/documents/screens/pdf_viewer_screen.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/notifications/screens/notifications_screen.dart';
@@ -113,7 +114,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.pdfViewer,
         parentNavigatorKey: _rootKey,
-        builder: (_, _) => const PdfViewerScreen(),
+        builder: (_, state) =>
+            PdfViewerScreen(request: state.extra! as PdfViewRequest),
       ),
       if (kDebugMode)
         GoRoute(

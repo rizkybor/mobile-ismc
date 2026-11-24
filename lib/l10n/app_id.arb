@@ -378,5 +378,33 @@
         "type": "String"
       }
     }
-  }
+  },
+  "docQuotation": "Penawaran (Quotation)",
+  "docInvoice": "Invoice",
+  "docCertificateGas": "Sertifikat Kalibrasi Gas Meter",
+  "docCertificateUti": "Sertifikat Kalibrasi UTI Meter",
+  "docCertificateKan": "Sertifikat Kalibrasi KAN",
+  "docLocked": "Bisa diunduh setelah pembayaran dikonfirmasi",
+  "docsEmpty": "Belum ada dokumen untuk order ini.",
+  "docsPaymentNote": "Invoice & sertifikat bisa diunduh setelah invoice terbit dan dibayar.",
+  "docsTempoNote": "Invoice berstatus Tempo: dokumen dapat diunduh sesuai kesepakatan dengan ISM.",
+  "docDownloading": "Mengunduh dokumen…",
+  "docProgress": "{done}/{total} bagian",
+  "@docProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "docShare": "Bagikan / Simpan",
+  "docIncompleteTitle": "Dokumen tidak lengkap",
+  "docIncompleteBody": "Sebagian data dokumen belum terbaca. Coba lagi beberapa saat.",
+  "docErrorBody": "Dokumen gagal dimuat. Periksa koneksi lalu coba lagi.",
+  "docLegacyTitle": "Dokumen lama",
+  "docLegacyBody": "Dokumen ini tersimpan dalam format lama. Buka lewat portal web ISM.",
+  "docOpenPortal": "Buka portal web"
 }

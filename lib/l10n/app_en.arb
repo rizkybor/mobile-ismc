@@ -378,5 +378,33 @@
         "type": "String"
       }
     }
-  }
+  },
+  "docQuotation": "Quotation",
+  "docInvoice": "Invoice",
+  "docCertificateGas": "Gas Meter Calibration Certificate",
+  "docCertificateUti": "UTI Meter Calibration Certificate",
+  "docCertificateKan": "KAN Calibration Certificate",
+  "docLocked": "Available after payment is confirmed",
+  "docsEmpty": "No documents for this order yet.",
+  "docsPaymentNote": "Invoice & certificates can be downloaded after the invoice is issued and paid.",
+  "docsTempoNote": "Invoice on credit terms: documents are available as agreed with ISM.",
+  "docDownloading": "Downloading document…",
+  "docProgress": "{done}/{total} parts",
+  "@docProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "docShare": "Share / Save",
+  "docIncompleteTitle": "Incomplete document",
+  "docIncompleteBody": "Part of the document could not be read. Try again shortly.",
+  "docErrorBody": "Document could not be loaded. Check your connection and try again.",
+  "docLegacyTitle": "Legacy document",
+  "docLegacyBody": "This document is stored in the old format. Open it via the ISM web portal.",
+  "docOpenPortal": "Open web portal"
 }

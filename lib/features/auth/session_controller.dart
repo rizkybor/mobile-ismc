@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/auth_repository.dart';
+import '../../data/documents_repository.dart';
 import '../../data/firebase_providers.dart';
 import '../../domain/app_user.dart';
 import '../../domain/auth_rules.dart';
@@ -147,6 +148,10 @@ class SessionController extends Notifier<Session> {
       for (final k in prefs.getKeys().where((k) => k.startsWith('cache.'))) {
         await prefs.remove(k);
       }
+      await ref
+          .read(documentsRepositoryProvider)
+          .clearCache()
+          .catchError((_) {});
       state = const Session.signedOut();
     } finally {
       _busy = false;
