@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/config/contacts.dart';
@@ -24,6 +25,19 @@ class CreditsFooter extends StatelessWidget {
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
           Text(l10n.creditCopyright(IsmContacts.copyrightYear), style: style),
+          Text(' · ', style: style), // l10n-ignore: pemisah
+          FutureBuilder<PackageInfo>(
+            future: PackageInfo.fromPlatform(),
+            builder: (context, snap) => Text(
+              snap.hasData
+                  ? l10n.creditVersion(
+                      snap.data!.version,
+                      snap.data!.buildNumber,
+                    )
+                  : '',
+              style: style,
+            ),
+          ),
           Text(' · ', style: style), // l10n-ignore: pemisah
           InkWell(
             borderRadius: BorderRadius.circular(4),
