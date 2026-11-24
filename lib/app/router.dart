@@ -12,6 +12,8 @@ import '../features/documents/document_ui.dart';
 import '../features/documents/screens/pdf_viewer_screen.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/notifications/screens/notifications_screen.dart';
+import '../features/profile/screens/change_password_screen.dart';
+import '../features/profile/screens/delete_account_screen.dart';
 import '../features/profile/screens/profile_screen.dart';
 import '../features/splash/splash_screen.dart';
 import '../features/tracking/screens/order_detail_screen.dart';
@@ -105,6 +107,16 @@ final routerProvider = Provider<GoRouter>((ref) {
         parentNavigatorKey: _rootKey,
         builder: (_, state) =>
             OrderDetailScreen(orderId: state.pathParameters['orderId']!),
+      ),
+      GoRoute(
+        path: Routes.changePassword,
+        parentNavigatorKey: _rootKey,
+        builder: (_, _) => const ChangePasswordScreen(),
+      ),
+      GoRoute(
+        path: Routes.deleteAccount,
+        parentNavigatorKey: _rootKey,
+        builder: (_, _) => const DeleteAccountScreen(),
       ),
       GoRoute(
         path: Routes.activation,

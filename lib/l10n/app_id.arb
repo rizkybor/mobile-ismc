@@ -528,5 +528,59 @@
   "notifAccountActivated": "Akun diaktifkan",
   "notifAccountActivatedBody": "Akun Anda aktif kembali.",
   "notifAccountDeactivated": "Akun dinonaktifkan",
-  "notifAccountDeactivatedBody": "Akun Anda dinonaktifkan. Hubungi admin untuk informasi lebih lanjut."
+  "notifAccountDeactivatedBody": "Akun Anda dinonaktifkan. Hubungi admin untuk informasi lebih lanjut.",
+  "profileAccountSection": "Akun",
+  "profileCompanySection": "Data perusahaan",
+  "profileSettingsSection": "Pengaturan",
+  "profileAboutSection": "Tentang",
+  "profileChangePhoto": "Ganti foto",
+  "profilePhotoCamera": "Ambil foto",
+  "profilePhotoGallery": "Pilih dari galeri",
+  "profilePhotoSaved": "Foto profil diperbarui.",
+  "profilePhotoTooLarge": "Ukuran foto maksimal 5 MB.",
+  "profilePhotoFailed": "Foto gagal disimpan. Coba lagi.",
+  "profileUsername": "Username",
+  "profileEmail": "Email",
+  "profileRole": "Customer",
+  "profileCompanyName": "Nama",
+  "profileCompanyPhone": "No. HP",
+  "profileCompanyTelp": "Telepon kantor",
+  "profileCompanyAddress": "Alamat",
+  "profileCompanyNote": "Perubahan data perusahaan: hubungi admin ISM.",
+  "profileCompanyEmpty": "Data perusahaan belum ada.",
+  "profileChangePassword": "Ganti password",
+  "profileLanguage": "Bahasa",
+  "profileDeleteAccount": "Hapus akun",
+  "profilePrivacy": "Kebijakan privasi",
+  "profileContact": "Hubungi ISM",
+  "profileVersion": "Versi aplikasi",
+  "profileVersionValue": "{version} ({build})",
+  "@profileVersionValue": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "build": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordCurrent": "Password saat ini",
+  "passwordNew": "Password baru",
+  "passwordNewRepeat": "Ulangi password baru",
+  "passwordChangeSubtitle": "Syarat password sama dengan saat mendaftar.",
+  "passwordChangeButton": "Simpan password",
+  "passwordChanged": "Password berhasil diganti.",
+  "deleteTitle": "Hapus akun",
+  "deleteSubtitle": "Tindakan ini tidak bisa dibatalkan.",
+  "deleteExplain1": "Akun login Anda di aplikasi dan portal web akan dihapus.",
+  "deleteExplain2": "Data order, dokumen, dan data perusahaan tetap disimpan Indo Safety Marine sebagai arsip bisnis.",
+  "deleteExplain3": "Untuk menghapus data perusahaan, hubungi ISM.",
+  "deleteTypeLabel": "Ketik HAPUS untuk konfirmasi",
+  "deleteTypeWord": "HAPUS",
+  "deleteTypeMismatch": "Ketik HAPUS (huruf besar).",
+  "deleteButton": "Hapus akun saya",
+  "deleteDone": "Akun Anda sudah dihapus.",
+  "deleteMarkFailedNote": "Catatan: penanda permintaan hapus belum bisa disimpan (butuh pembaruan sistem ISM). Akun login tetap dihapus.",
+  "languageSheetTitle": "Pilih bahasa"
 }

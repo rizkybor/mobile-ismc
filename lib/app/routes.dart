@@ -13,6 +13,8 @@ abstract final class Routes {
   static const profile = '/profile';
 
   static const activation = '/activation';
+  static const changePassword = '/profile/password';
+  static const deleteAccount = '/profile/delete';
   static const pdfViewer = '/pdf-viewer';
   static String order(String id) => '/order/$id';
 

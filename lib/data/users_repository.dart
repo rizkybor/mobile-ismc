@@ -68,6 +68,40 @@ class UsersRepository {
     return AppUser.fromMap(uid, data);
   }
 
+  /// Foto profil (rules: customer hanya boleh mengubah
+  /// `photoURL, updatedAt, updatedBy`).
+  Future<void> updatePhoto({
+    required String username,
+    required String photoDataUrl,
+    required String updatedBy,
+  }) {
+    return _users.doc(username).update({
+      'photoURL': photoDataUrl,
+      'updatedAt': DateTime.now().toUtc().toIso8601String(),
+      'updatedBy': updatedBy,
+    });
+  }
+
+  /// Tandai permintaan hapus akun (PRD §12 butir 2a). **Butuh perubahan
+  /// rules di repo CSMS**; bila ditolak (`permission-denied`) dikembalikan
+  /// `false` dan proses hapus tetap dilanjutkan.
+  Future<bool> requestDeletion({
+    required String username,
+    required String updatedBy,
+  }) async {
+    try {
+      await _users.doc(username).update({
+        'deletionRequestedAt': DateTime.now().toUtc().toIso8601String(),
+        'updatedAt': DateTime.now().toUtc().toIso8601String(),
+        'updatedBy': updatedBy,
+      });
+      return true;
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') return false;
+      rethrow;
+    }
+  }
+
   /// `roles/{uid}` dibuat bila belum ada (CSMS `ensureCustomerRole`).
   Future<void> ensureCustomerRole(String uid, String email) async {
     final ref = _roles.doc(uid);

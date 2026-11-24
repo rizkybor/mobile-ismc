@@ -528,5 +528,59 @@
   "notifAccountActivated": "Account activated",
   "notifAccountActivatedBody": "Your account is active again.",
   "notifAccountDeactivated": "Account deactivated",
-  "notifAccountDeactivatedBody": "Your account has been deactivated. Contact the admin for details."
+  "notifAccountDeactivatedBody": "Your account has been deactivated. Contact the admin for details.",
+  "profileAccountSection": "Account",
+  "profileCompanySection": "Company details",
+  "profileSettingsSection": "Settings",
+  "profileAboutSection": "About",
+  "profileChangePhoto": "Change photo",
+  "profilePhotoCamera": "Take a photo",
+  "profilePhotoGallery": "Choose from gallery",
+  "profilePhotoSaved": "Profile photo updated.",
+  "profilePhotoTooLarge": "Photo must be 5 MB or smaller.",
+  "profilePhotoFailed": "Photo could not be saved. Try again.",
+  "profileUsername": "Username",
+  "profileEmail": "Email",
+  "profileRole": "Customer",
+  "profileCompanyName": "Name",
+  "profileCompanyPhone": "Mobile",
+  "profileCompanyTelp": "Office phone",
+  "profileCompanyAddress": "Address",
+  "profileCompanyNote": "To change company details, contact the ISM admin.",
+  "profileCompanyEmpty": "No company details yet.",
+  "profileChangePassword": "Change password",
+  "profileLanguage": "Language",
+  "profileDeleteAccount": "Delete account",
+  "profilePrivacy": "Privacy policy",
+  "profileContact": "Contact ISM",
+  "profileVersion": "App version",
+  "profileVersionValue": "{version} ({build})",
+  "@profileVersionValue": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "build": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordCurrent": "Current password",
+  "passwordNew": "New password",
+  "passwordNewRepeat": "Repeat new password",
+  "passwordChangeSubtitle": "Same requirements as when registering.",
+  "passwordChangeButton": "Save password",
+  "passwordChanged": "Password changed successfully.",
+  "deleteTitle": "Delete account",
+  "deleteSubtitle": "This action cannot be undone.",
+  "deleteExplain1": "Your login account for the app and web portal will be deleted.",
+  "deleteExplain2": "Order, document, and company data remain stored by Indo Safety Marine as business records.",
+  "deleteExplain3": "To remove company data, contact ISM.",
+  "deleteTypeLabel": "Type HAPUS to confirm",
+  "deleteTypeWord": "HAPUS",
+  "deleteTypeMismatch": "Type HAPUS (upper case).",
+  "deleteButton": "Delete my account",
+  "deleteDone": "Your account has been deleted.",
+  "deleteMarkFailedNote": "Note: the deletion request marker could not be saved (requires an ISM system update). The login account was still deleted.",
+  "languageSheetTitle": "Choose language"
 }

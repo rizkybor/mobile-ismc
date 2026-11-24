@@ -100,5 +100,6 @@ void main() {
     expect(find.byType(BrandHeader), findsOneWidget);
     expect(find.text('Ops Samudra'), findsOneWidget);
     expect(find.text('ops@samudra.example.com'), findsOneWidget);
+    expect(find.text('Ganti password'), findsOneWidget);
   });
 }

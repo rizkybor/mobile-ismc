@@ -136,6 +136,68 @@ class AuthRepository {
   }
 
   Future<void> signOut() => _auth.signOut();
+
+  /// Re-autentikasi dengan password saat ini (ganti password, hapus akun).
+  Future<User> reauthenticate(String password) async {
+    final user = _auth.currentUser;
+    if (user == null || user.email == null) {
+      throw const AuthFailure(AuthErrorKind.requiresRecentLogin);
+    }
+    try {
+      await user.reauthenticateWithCredential(
+        EmailAuthProvider.credential(email: user.email!, password: password),
+      );
+      return user;
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(
+        AuthErrorMapper.fromCode(e.code, message: e.message),
+        code: e.code,
+      );
+    }
+  }
+
+  /// F-07.3: password lama → `updatePassword` (syarat sama dengan daftar).
+  Future<void> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    if (!AuthRules.isPasswordValid(newPassword)) {
+      throw const AuthFailure(AuthErrorKind.passwordRequirements);
+    }
+    final user = await reauthenticate(currentPassword);
+    try {
+      await user.updatePassword(newPassword);
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(
+        AuthErrorMapper.fromCode(e.code, message: e.message),
+        code: e.code,
+      );
+    }
+  }
+
+  /// F-07.4: re-autentikasi → tandai permintaan hapus (bila rules
+  /// mengizinkan) → `user.delete()`. Mengembalikan `true` bila penanda
+  /// `deletionRequestedAt` berhasil ditulis.
+  Future<bool> deleteAccount({
+    required String password,
+    required String username,
+    required String name,
+  }) async {
+    final user = await reauthenticate(password);
+    final marked = await _users.requestDeletion(
+      username: username,
+      updatedBy: name,
+    );
+    try {
+      await user.delete();
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure(
+        AuthErrorMapper.fromCode(e.code, message: e.message),
+        code: e.code,
+      );
+    }
+    return marked;
+  }
 }
 
 final authRepositoryProvider = Provider<AuthRepository>(

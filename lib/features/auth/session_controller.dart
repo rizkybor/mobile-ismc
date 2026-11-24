@@ -164,6 +164,41 @@ class SessionController extends Notifier<Session> {
     }
   }
 
+  /// Perbarui foto di sesi setelah tersimpan di Firestore.
+  void setPhoto(String photoUrl) {
+    final u = state.user;
+    if (u != null) state = Session.ready(u.copyWith(photoUrl: photoUrl));
+  }
+
+  /// Hapus akun lalu bersihkan sesi & cache (F-07.4).
+  Future<bool> deleteAccount(String password) async {
+    final u = state.user;
+    if (u == null) return false;
+    _busy = true;
+    try {
+      final marked = await ref
+          .read(authRepositoryProvider)
+          .deleteAccount(
+            password: password,
+            username: u.username,
+            name: u.name,
+          );
+      await ref.read(pushServiceProvider).unregister();
+      final prefs = await SharedPreferences.getInstance();
+      for (final k in prefs.getKeys().where((k) => k.startsWith('cache.'))) {
+        await prefs.remove(k);
+      }
+      await ref
+          .read(documentsRepositoryProvider)
+          .clearCache()
+          .catchError((_) {});
+      state = const Session.signedOut();
+      return marked;
+    } finally {
+      _busy = false;
+    }
+  }
+
   /// Hapus pesan galat sesi tersimpan setelah ditampilkan.
   void clearError() {
     if (state.lastError != null) state = const Session.signedOut();

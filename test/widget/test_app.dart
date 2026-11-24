@@ -51,6 +51,7 @@ Future<ProviderContainer> makeContainer({
   Map<String, Object> prefs = const {},
   Session session = const Session.ready(testUser),
   AccountStatus account = AccountStatus.active,
+  CustomerProfile? customer,
   List<Order> orders = const [],
   bool ordersFail = false,
   Future<Order?> Function(String id)? orderDetail,
@@ -63,7 +64,7 @@ Future<ProviderContainer> makeContainer({
     isOfflineProvider.overrideWith((_) => Stream.value(false)),
     sessionProvider.overrideWith(() => FakeSessionController(session)),
     accountStatusProvider.overrideWith(
-      (_) => Stream.value(AccountState(account)),
+      (_) => Stream.value(AccountState(account, customer: customer)),
     ),
     customerOrdersProvider.overrideWith(
       () => FakeOrders(orders, fail: ordersFail),
