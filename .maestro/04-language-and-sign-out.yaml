@@ -1,0 +1,25 @@
+# (d) ganti bahasa di Profil → keluar
+appId: id.co.indosafetymarine.customer
+---
+- launchApp:
+    clearState: true
+- runFlow:
+    file: common/login-seed.yaml
+    env:
+      LANG: id
+- runFlow:
+    file: common/skip-guide.yaml
+    env:
+      LANG: id
+- tapOn: "Profil"
+- tapOn: "Bahasa"
+- tapOn: "English"
+- assertVisible: "Change password"
+- tapOn: "Language"
+- tapOn: "Bahasa Indonesia"
+- assertVisible: "Ganti password"
+- scrollUntilVisible:
+    element: "Keluar"
+- tapOn: "Keluar"
+- tapOn: "Keluar"
+- assertVisible: "Selamat datang di ISM Customer"

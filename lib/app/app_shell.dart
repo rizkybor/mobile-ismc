@@ -6,6 +6,9 @@ import '../core/i18n/l10n.dart';
 import '../core/theme/app_colors.dart';
 import '../features/activation/account_status_provider.dart';
 import '../features/notifications/notifications_provider.dart';
+import '../features/onboarding/onboarding_controller.dart';
+import '../features/onboarding/onboarding_overlay.dart';
+import '../features/onboarding/onboarding_targets.dart';
 
 /// Kerangka tab bawah: Beranda, Lacak, Notifikasi, Profil (PRD §10).
 /// Padanan ikon mdi web: home-outline, map-marker-path, bell-outline,
@@ -22,64 +25,83 @@ class AppShell extends ConsumerWidget {
     final l10n = context.l10n;
     final active = ref.watch(isAccountActiveProvider);
     final unread = ref.watch(unreadCountProvider);
-    return Scaffold(
-      extendBody: true,
-      body: shell,
-      bottomNavigationBar: DecoratedBox(
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          border: const Border(top: BorderSide(color: AppColors.borderSoft)),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.navy.withValues(alpha: 0.08),
-              blurRadius: 24,
-              offset: const Offset(0, -6),
-            ),
-          ],
-        ),
-        child: NavigationBar(
-          selectedIndex: shell.currentIndex,
-          onDestinationSelected: (i) {
-            if (!active && _lockedIndexes.contains(i)) {
-              ScaffoldMessenger.of(context)
-                ..clearSnackBars()
-                ..showSnackBar(SnackBar(content: Text(l10n.tabLockedMessage)));
-              return;
-            }
-            shell.goBranch(i, initialLocation: i == shell.currentIndex);
-          },
-          destinations: [
-            NavigationDestination(
-              icon: const Icon(Icons.home_outlined),
-              selectedIcon: const Icon(Icons.home_rounded),
-              label: l10n.tabHome,
-            ),
-            NavigationDestination(
-              icon: _LockableIcon(Icons.route_outlined, locked: !active),
-              selectedIcon: const Icon(Icons.route_rounded),
-              label: l10n.tabTracking,
-            ),
-            NavigationDestination(
-              icon: _LockableIcon(
-                Icons.notifications_outlined,
-                locked: !active,
-                badge: unread,
+    final showGuide = ref.watch(onboardingProvider);
+    return Stack(
+      children: [
+        Scaffold(
+          extendBody: true,
+          body: shell,
+          bottomNavigationBar: DecoratedBox(
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              border: const Border(
+                top: BorderSide(color: AppColors.borderSoft),
               ),
-              selectedIcon: _LockableIcon(
-                Icons.notifications_rounded,
-                locked: false,
-                badge: unread,
-              ),
-              label: l10n.tabNotifications,
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.navy.withValues(alpha: 0.08),
+                  blurRadius: 24,
+                  offset: const Offset(0, -6),
+                ),
+              ],
             ),
-            NavigationDestination(
-              icon: const Icon(Icons.account_circle_outlined),
-              selectedIcon: const Icon(Icons.account_circle_rounded),
-              label: l10n.tabProfile,
+            child: NavigationBar(
+              selectedIndex: shell.currentIndex,
+              onDestinationSelected: (i) {
+                if (!active && _lockedIndexes.contains(i)) {
+                  ScaffoldMessenger.of(context)
+                    ..clearSnackBars()
+                    ..showSnackBar(
+                      SnackBar(content: Text(l10n.tabLockedMessage)),
+                    );
+                  return;
+                }
+                shell.goBranch(i, initialLocation: i == shell.currentIndex);
+              },
+              destinations: [
+                NavigationDestination(
+                  icon: const Icon(Icons.home_outlined),
+                  selectedIcon: const Icon(Icons.home_rounded),
+                  label: l10n.tabHome,
+                ),
+                NavigationDestination(
+                  icon: KeyedSubtree(
+                    key: OnboardingTargets.tabTracking,
+                    child: _LockableIcon(Icons.route_outlined, locked: !active),
+                  ),
+                  selectedIcon: const Icon(Icons.route_rounded),
+                  label: l10n.tabTracking,
+                ),
+                NavigationDestination(
+                  icon: KeyedSubtree(
+                    key: OnboardingTargets.tabNotifications,
+                    child: _LockableIcon(
+                      Icons.notifications_outlined,
+                      locked: !active,
+                      badge: unread,
+                    ),
+                  ),
+                  selectedIcon: _LockableIcon(
+                    Icons.notifications_rounded,
+                    locked: false,
+                    badge: unread,
+                  ),
+                  label: l10n.tabNotifications,
+                ),
+                NavigationDestination(
+                  icon: KeyedSubtree(
+                    key: OnboardingTargets.tabProfile,
+                    child: const Icon(Icons.account_circle_outlined),
+                  ),
+                  selectedIcon: const Icon(Icons.account_circle_rounded),
+                  label: l10n.tabProfile,
+                ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+        if (showGuide) const Positioned.fill(child: OnboardingOverlay()),
+      ],
     );
   }
 }

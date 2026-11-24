@@ -1,0 +1,7 @@
+appId: id.co.indosafetymarine.customer
+env:
+  LANG: id
+---
+- tapOn:
+    text: "${LANG == 'en' ? 'Skip' : 'Lewati'}"
+    optional: true

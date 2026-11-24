@@ -582,5 +582,20 @@
   "deleteButton": "Delete my account",
   "deleteDone": "Your account has been deleted.",
   "deleteMarkFailedNote": "Note: the deletion request marker could not be saved (requires an ISM system update). The login account was still deleted.",
-  "languageSheetTitle": "Choose language"
+  "languageSheetTitle": "Choose language",
+  "onbStep1Title": "Home",
+  "onbStep1Body": "Order totals and your 5 latest orders. Pull down to refresh.",
+  "onbStep2Title": "Track Orders",
+  "onbStep2Body": "All your orders and where each one is across 7 stages, from order received to Delivery Order.",
+  "onbStep3Title": "Official documents",
+  "onbStep3Body": "In an order's detail: the Quotation is always available. Invoice and Certificates unlock once the invoice is Paid or on credit terms.",
+  "onbStep4Title": "Notifications",
+  "onbStep4Body": "Updates whenever an order moves. Tap one to open the order directly.",
+  "onbStep5Title": "Profile & language",
+  "onbStep5Body": "Account and company details, change your photo or password, and choose Bahasa Indonesia or English.",
+  "onbSkip": "Skip",
+  "onbNext": "Next",
+  "onbBack": "Back",
+  "onbDone": "Done",
+  "profileGuide": "App guide"
 }

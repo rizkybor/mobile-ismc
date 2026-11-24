@@ -582,5 +582,20 @@
   "deleteButton": "Hapus akun saya",
   "deleteDone": "Akun Anda sudah dihapus.",
   "deleteMarkFailedNote": "Catatan: penanda permintaan hapus belum bisa disimpan (butuh pembaruan sistem ISM). Akun login tetap dihapus.",
-  "languageSheetTitle": "Pilih bahasa"
+  "languageSheetTitle": "Pilih bahasa",
+  "onbStep1Title": "Beranda",
+  "onbStep1Body": "Ringkasan jumlah order dan 5 order terbaru. Tarik ke bawah untuk menyegarkan.",
+  "onbStep2Title": "Lacak Order",
+  "onbStep2Body": "Semua order Anda dengan posisi di 7 tahap: dari order diterima sampai Delivery Order.",
+  "onbStep3Title": "Dokumen resmi",
+  "onbStep3Body": "Di detail order: Penawaran selalu bisa diunduh. Invoice dan Sertifikat terbuka setelah invoice Lunas atau Tempo.",
+  "onbStep4Title": "Notifikasi",
+  "onbStep4Body": "Kabar setiap kali order bergerak. Ketuk notifikasi untuk langsung membuka ordernya.",
+  "onbStep5Title": "Profil & bahasa",
+  "onbStep5Body": "Data akun dan perusahaan, ganti foto atau password, dan pilih Bahasa Indonesia atau English.",
+  "onbSkip": "Lewati",
+  "onbNext": "Lanjut",
+  "onbBack": "Kembali",
+  "onbDone": "Selesai",
+  "profileGuide": "Panduan aplikasi"
 }

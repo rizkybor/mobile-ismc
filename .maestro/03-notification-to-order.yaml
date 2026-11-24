@@ -1,0 +1,17 @@
+# (c) notifikasi → detail order (butuh notifikasi seed/di-trigger admin)
+appId: id.co.indosafetymarine.customer
+env:
+  LANG: id
+---
+- launchApp:
+    clearState: true
+- runFlow: common/login-seed.yaml
+- runFlow: common/skip-guide.yaml
+- tapOn: "${LANG == 'en' ? 'Notifications' : 'Notifikasi'}"
+- assertVisible: "${LANG == 'en' ? 'Notifications' : 'Notifikasi'}"
+- tapOn:
+    text: "${LANG == 'en' ? 'Order received' : 'Order diterima'}"
+    optional: true
+- assertVisible:
+    text: "${LANG == 'en' ? 'Order detail' : 'Detail order'}"
+    optional: true

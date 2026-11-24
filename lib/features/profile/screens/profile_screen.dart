@@ -21,6 +21,7 @@ import '../../../shared/widgets/widgets.dart';
 import '../../activation/account_status_provider.dart';
 import '../../auth/session_controller.dart';
 import '../../debug/debug_fab.dart';
+import '../../onboarding/onboarding_controller.dart';
 import '../widgets/user_avatar.dart';
 
 /// Profil (PRD F-07): akun & perusahaan (baca saja), foto, password,
@@ -300,6 +301,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 icon: Icons.lock_reset_rounded,
                 title: l10n.profileChangePassword,
                 onTap: () => context.push(Routes.changePassword),
+              ),
+              _MenuTile(
+                icon: Icons.help_outline_rounded,
+                title: l10n.profileGuide,
+                onTap: () {
+                  ref.read(onboardingProvider.notifier).reopen();
+                  context.go(Routes.home);
+                },
               ),
             ],
           ),

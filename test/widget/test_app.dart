@@ -13,6 +13,7 @@ import 'package:ism_customer/features/activation/account_status_provider.dart';
 import 'package:ism_customer/features/auth/session_controller.dart';
 import 'package:ism_customer/features/home/orders_controller.dart';
 import 'package:ism_customer/features/notifications/notifications_provider.dart';
+import 'package:ism_customer/features/onboarding/onboarding_controller.dart';
 import 'package:ism_customer/features/tracking/order_detail_provider.dart';
 import 'package:ism_customer/shared/widgets/offline_banner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -56,8 +57,12 @@ Future<ProviderContainer> makeContainer({
   bool ordersFail = false,
   Future<Order?> Function(String id)? orderDetail,
   List<AppNotification> notifications = const [],
+  bool onboardingDone = true,
 }) async {
-  SharedPreferences.setMockInitialValues(prefs);
+  SharedPreferences.setMockInitialValues({
+    if (onboardingDone) OnboardingController.prefKey(testUser.uid): true,
+    ...prefs,
+  });
   final sp = await SharedPreferences.getInstance();
   final overrides = [
     sharedPreferencesProvider.overrideWithValue(sp),

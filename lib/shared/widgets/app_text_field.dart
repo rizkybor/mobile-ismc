@@ -20,6 +20,7 @@ class AppTextField extends StatefulWidget {
     this.enabled = true,
     this.autofillHints,
     this.prefixIcon,
+    this.semanticId,
   });
 
   final String label;
@@ -35,6 +36,9 @@ class AppTextField extends StatefulWidget {
   final bool enabled;
   final Iterable<String>? autofillHints;
   final IconData? prefixIcon;
+
+  /// Accessibility identifier (Maestro E2E).
+  final String? semanticId;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -57,32 +61,35 @@ class _AppTextFieldState extends State<AppTextField> {
           ),
         ),
         const SizedBox(height: AppSpacing.xs + 2),
-        TextFormField(
-          controller: widget.controller,
-          obscureText: _obscure,
-          enabled: widget.enabled,
-          keyboardType: widget.keyboardType,
-          textInputAction: widget.textInputAction,
-          validator: widget.validator,
-          onChanged: widget.onChanged,
-          maxLines: widget.secure ? 1 : widget.maxLines,
-          autofillHints: widget.autofillHints,
-          decoration: InputDecoration(
-            hintText: widget.hint,
-            errorText: widget.errorText,
-            prefixIcon: widget.prefixIcon == null
-                ? null
-                : Icon(widget.prefixIcon),
-            suffixIcon: widget.secure
-                ? IconButton(
-                    onPressed: () => setState(() => _obscure = !_obscure),
-                    icon: Icon(
-                      _obscure
-                          ? Icons.visibility_outlined
-                          : Icons.visibility_off_outlined,
-                    ),
-                  )
-                : null,
+        Semantics(
+          identifier: widget.semanticId,
+          child: TextFormField(
+            controller: widget.controller,
+            obscureText: _obscure,
+            enabled: widget.enabled,
+            keyboardType: widget.keyboardType,
+            textInputAction: widget.textInputAction,
+            validator: widget.validator,
+            onChanged: widget.onChanged,
+            maxLines: widget.secure ? 1 : widget.maxLines,
+            autofillHints: widget.autofillHints,
+            decoration: InputDecoration(
+              hintText: widget.hint,
+              errorText: widget.errorText,
+              prefixIcon: widget.prefixIcon == null
+                  ? null
+                  : Icon(widget.prefixIcon),
+              suffixIcon: widget.secure
+                  ? IconButton(
+                      onPressed: () => setState(() => _obscure = !_obscure),
+                      icon: Icon(
+                        _obscure
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined,
+                      ),
+                    )
+                  : null,
+            ),
           ),
         ),
       ],

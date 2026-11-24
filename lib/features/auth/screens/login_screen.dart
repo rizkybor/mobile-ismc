@@ -81,6 +81,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               children: [
                 AppTextField(
                   label: l10n.fieldEmail,
+                  semanticId: 'login-email',
                   controller: _email,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
@@ -100,6 +101,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 const SizedBox(height: AppSpacing.lg),
                 AppTextField(
                   label: l10n.fieldPassword,
+                  semanticId: 'login-password',
                   controller: _password,
                   secure: true,
                   textInputAction: TextInputAction.done,
@@ -123,6 +125,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ] else
                   const SizedBox(height: AppSpacing.sm),
                 AppButton(
+                  semanticId: 'login-submit',
                   label: l10n.loginButton,
                   loading: _loading,
                   onPressed: _submit,

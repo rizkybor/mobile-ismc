@@ -119,6 +119,7 @@ class WelcomeScreen extends ConsumerWidget {
                           const Spacer(),
                           const SizedBox(height: AppSpacing.lg),
                           AppButton(
+                            semanticId: 'welcome-login',
                             label: l10n.welcomeLogin,
                             onPressed: () => context.push(Routes.login),
                           ),

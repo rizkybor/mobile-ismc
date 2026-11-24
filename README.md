@@ -31,7 +31,7 @@ Setiap tahap punya `prompt.md` siap dipakai (developer atau AI coding agent). Ke
 | 6 | [prompts/06-dokumen-pdf](prompts/06-dokumen-pdf/prompt.md) | Buka/simpan/bagikan PDF sesuai aturan pembayaran |
 | 7 | [prompts/07-notifikasi](prompts/07-notifikasi/prompt.md) | Notifikasi in-app realtime, status baca, persiapan push |
 | 8 | [prompts/08-profil-akun](prompts/08-profil-akun/prompt.md) | Profil, foto, ganti password, hapus akun |
-| 9 | [prompts/09-quality-assurance](prompts/09-quality-assurance/prompt.md) | Panduan pertama login (coach-mark, bisa dilewati), unit, integrasi emulator, E2E Maestro, checklist perangkat |
+| 9 | [prompts/09-quality-assurance](prompts/09-quality-assurance/prompt.md) | Panduan pertama login (coach-mark, bisa dilewati), unit ≥ 80 % domain, integrasi emulator, E2E Maestro, checklist & laporan QA |
 | 10 | [prompts/10-rilis-store](prompts/10-rilis-store/prompt.md) | Build AAB/IPA, materi store, privasi, rilis bertahap |
 
 **Cara memakai prompt:** buka prompt tahap yang dikerjakan, tempelkan ke agent/assistant di root repo ini (setelah Tahap 1 berisi kode), minta agent membaca `docs/` lebih dulu, lalu review hasil terhadap bagian **Kriteria selesai**.
@@ -113,6 +113,18 @@ flutter test
 ```
 
 Ketiganya plus `flutter build apk --debug` dijalankan GitHub Actions di setiap PR (`.github/workflows/ci.yml`).
+
+### Integration test (Firebase Emulator) & E2E
+
+```bash
+# emulator CSMS jalan + seed, env/dev.json dengan EMULATOR_HOST kosong untuk simulator
+flutter test integration_test/auth_emulator_test.dart -d <simulator-id> --dart-define-from-file=env/dev.json
+flutter test --coverage      # unit + widget; cakupan di coverage/lcov.info
+```
+
+E2E Maestro: alur di `.maestro/` (daftar → aktivasi, login → Lacak → Penawaran, notifikasi, bahasa & keluar), masing-masing bisa dijalankan dengan `-e LANG=id|en`. Pasang CLI dulu (`curl -Ls https://get.maestro.mobile.dev | bash`), lihat `.maestro/README.md`.
+
+Checklist uji manual dan laporan QA ada di `docs/QA-CHECKLIST.md` dan `docs/QA-REPORT.md` (dokumen internal).
 
 ### Multi-bahasa
 
